@@ -4,7 +4,7 @@ REM       OS: Windows / Linux(?) (Not tested with Powershell on Linux)
 REM       Author: 0iphor13
 
 REM       Reverse shell, based on ReverseDuckyII, executed in the background
-REM       Fill in Attacker-IP and Port in Line 19
+REM       Fill in Attacker-IP and Port in Line 20
 REM       DON'T FORGET TO START LISTENER
 
 DELAY 500
