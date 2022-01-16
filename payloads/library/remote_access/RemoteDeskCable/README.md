@@ -1,0 +1,24 @@
+**Title: ReverseDeskCable**
+
+Author: 0iphor13
+
+Version: 1.0
+
+What is ReverseDeskCable?
+#
+*The O.MG Cable is a powerfull tool and can be used as a remote HID, to even increase the power, RemoteDeskCable was released. - Get screen access!*
+*See what your victim is doing, see when the time is right to fire up your next payload!*
+#
+
+**Instruction:**
+
+Plug in Cable.
+Start netcat on your attacking machine like so: nc -lvnp 1234 | nc -lvnp 5678 (Example Ports)
+	This will create a relay towards your second port.
+Use a browser supporting MJPEG, like FireFox, and visit 127.0.0.1:5678.
+Fire up the payload and for the screenshare to appear within FireFox.
+
+Start Bunny.pl -> perl Bunny.pl
+#
+!!!Insert the IP of your attacking machine & PORT into the payload!!!
+#
