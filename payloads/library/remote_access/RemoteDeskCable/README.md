@@ -12,13 +12,12 @@ What is ReverseDeskCable?
 
 **Instruction:**
 
-Plug in Cable.
-Start netcat on your attacking machine like so: nc -lvnp 1234 | nc -lvnp 5678 (Example Ports)
-	This will create a relay towards your second port.
-Use a browser supporting MJPEG, like FireFox, and visit 127.0.0.1:5678.
-Fire up the payload and for the screenshare to appear within FireFox.
-
-Start Bunny.pl -> perl Bunny.pl
-#
 !!!Insert the IP of your attacking machine & PORT into the payload!!!
 #
+Plug in Cable.
+Start netcat on your attacking machine like so: nc -lvnp 1234 | nc -lvnp 5678 (Example Ports) This will create a relay towards your second port.
+#
+Use a browser supporting MJPEG, like FireFox, and visit 127.0.0.1:5678.
+Fire up the payload and for the screenshare to appear within FireFox.
+![alt text](https://github.com/0iphor13/omg-payloads/blob/master/payloads/library/remote_access/RemoteDeskCable/Screenshot%20from%202022-01-16%2013-28-28.png)
+![alt text](https://github.com/0iphor13/omg-payloads/blob/master/payloads/library/remote_access/RemoteDeskCable/Screenshot%20from%202022-01-16%2013-29-03.png)
