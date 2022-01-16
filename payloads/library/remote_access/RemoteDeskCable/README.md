@@ -4,7 +4,7 @@ Author: 0iphor13
 
 Version: 1.0
 
-What is ReverseDeskCable?
+What is RemoteDeskCable?
 #
 *The O.MG Cable is a powerfull tool and can be used as a remote HID, to even increase the power, RemoteDeskCable was released. - Get screen access!*
 *See what your victim is doing, see when the time is right to fire up your next payload!*
