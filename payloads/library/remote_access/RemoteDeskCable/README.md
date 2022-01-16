@@ -1,4 +1,4 @@
-**Title: ReverseDeskCable**
+**Title: RemoteDeskCable**
 
 Author: 0iphor13
 
