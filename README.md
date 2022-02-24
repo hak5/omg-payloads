@@ -1,15 +1,14 @@
-# Payload Library for the OMG Cable
+# Payload Library for O.MG Devices
 
-This repository contains payloads and extensions for the OMG Cable. Community developed payloads are listed and developers are encouraged to create pull requests to make changes to or submit new payloads.
+This repository contains payloads and extensions for O.MG Devices. Community developed payloads are listed and developers are encouraged to create pull requests to make changes to or submit new payloads.
 
-## About the OMG Cable
+## About the O.MG Cable
 
 
 To get a cable like this, you used to need a million dollar budget or to find a guy named MG at DEFCON. But Hak5 teamed up with MG to allow more people access to this previously clandestine attack hardware.
 
 -   [Purchase at Hak5](https://shop.hak5.org/collections/mischief-gadgets/)
 -   [Documentation](https://github.com/O-MG/O.MG_Cable-Firmware/wiki)
--   [OMG Cable Forums](https://forums.hak5.org/forum/104-omg-cable/)
 -   [Slack Channel](https://join.slack.com/t/o-mg/shared_invite/enQtODkzMTM5NzE1ODE0LTY1ZTNhOWRjNGFlNWQ1MmIxYzhhOTUzMzE2ODQwMGNhMDEzMjJjNzQ0MDYyZTQ5YTE5YzM3YTE2NjQ0NGViOWQ)
 
 ![OMG Cable](https://cdn.shopify.com/s/files/1/0068/2142/files/omg_400x.png?v=1604676891)
