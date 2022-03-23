@@ -1,6 +1,6 @@
 REM       OMG-AwarenessTraining
-REM       Version 1.0
-REM       OS: Windows / Linux(?) (Not tested with Powershell on Linux)
+REM       Version 1.1
+REM       OS: Windows 
 REM       Author: 0iphor13
 
 REM       A small message box, telling the user that he violated the security policy. The hostname of the user will be send to a webhook to report the incident
