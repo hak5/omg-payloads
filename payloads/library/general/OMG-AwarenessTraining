@@ -4,7 +4,7 @@ REM       OS: Windows / Linux(?) (Not tested with Powershell on Linux)
 REM       Author: 0iphor13
 
 REM       A small message box, telling the user that he violated the security policy. The hostname of the user will be send to a webhook to report the incident
-REM       Fill in the (Web)hook URL where the hostname should be reported to.
+REM       Fill in the (Web)hook URL, in LINE 31, where the hostname should be reported to.
 
 DELAY 500
 DUCKY_LANG de
