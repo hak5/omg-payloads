@@ -9,7 +9,7 @@ To get a cable like this, you used to need a million dollar budget or to find a 
 
 -   [Purchase at Hak5](https://shop.hak5.org/collections/mischief-gadgets/)
 -   [Documentation](https://github.com/O-MG/O.MG_Cable-Firmware/wiki)
--   [Slack Channel](https://join.slack.com/t/o-mg/shared_invite/enQtODkzMTM5NzE1ODE0LTY1ZTNhOWRjNGFlNWQ1MmIxYzhhOTUzMzE2ODQwMGNhMDEzMjJjNzQ0MDYyZTQ5YTE5YzM3YTE2NjQ0NGViOWQ)
+-   [Discord](https://hak5.org/discord) (Join #omg-support)
 
 ![OMG Cable](https://cdn.shopify.com/s/files/1/0068/2142/files/omg_400x.png?v=1604676891)
 
