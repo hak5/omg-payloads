@@ -1,8 +1,8 @@
 **Title: FodCableII - UAC Bypass**
 
-Author: 0iphor13
-Version: 1.0
-Requirements: OMG Firmware v.2.5 or higher
+<p>Author: 0iphor13<br>
+Version: 1.0<br>
+Requirements: OMG Firmware v.2.5 or higher</p>
 
 **What is FodCableII?**
 #
