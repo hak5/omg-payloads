@@ -4,14 +4,14 @@
 Version: 1.0<br>
 Requirements: OMG Firmware v.2.5 or higher</p>
 
-**What is RemoteDeskCable?**
+**What is ReverseCableSSL?**
 #
 <p>ReverseCableSSL gets you remote access to your target in seconds.<br>
 Unlike ReverseCable, ReverseCableSSL offers encrypted traffic via OpenSSL.</p>
 
 
 **Instruction:**
-<p>!!!Insert the IP of your attacking machine & PORT into the payload!!!<br>
+<p>!!!Insert the IP of your attacking machine & PORT into the payload at the beginning!!!<br>
 1. Create key.pem & cert.pem like so: openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes<br>
 	> It will ask for information about the certificate - Insert whatever you want.<br>
 
