@@ -1,0 +1,63 @@
+
+REM This payload is usable to help windows users find 
+REM there way out of the matrix, with a little help from 
+REM Morphues.txt by Evodefense for use in good 
+REM karma only.
+REM open powershell
+
+GUI r
+DELAY 250
+STRING powershell 
+DELAY 1000
+Enter
+DELAY 1000
+
+REM install windows sub linux subsitute distro of 
+REM choice
+
+STRING wsl --install -d Ubuntu
+DELAY 2500
+ENTER
+DELAY 18000
+
+REM long delay for download 
+
+REM Mr. Anderson will be our user
+
+STRING neo
+DELAY 2000
+Enter
+DELAY 2500
+REM A password to follow
+
+STRING 1Whiter@bbit
+DELAY 1000
+Enter
+DELAY 2500
+STRING 1Whiter@bbit
+DELAY 250
+Enter
+DELAY 2500
+
+REM need new repos
+STRING sudo apt update
+Delay 2000
+Enter
+STRING 1Whiter@bbit
+DELAY 2500
+Enter
+DELAY 18000
+
+REM escaping the matrix
+
+STRING sudo apt install cmatrix
+DELAY 2000
+Enter
+DELAY 5000
+STRING cmatrix
+DELAY 2500
+Enter
+DELAY 2000
+REM full screen
+GUI uparrow
+REM congrats your one set closer to using linux! 
