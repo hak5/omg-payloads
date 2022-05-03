@@ -1,0 +1,33 @@
+REM       Ai-Cable
+REM       Version 1.1
+REM       OS: Multi (Tested with the OMG-Plug on Google Chrome/Windows 10 at screen resolution 1920 x 1080)
+REM       Author: 0iphor13
+
+REM       This payload will greet you, until you kill it! Maybe, if you wait long enough, it will write its own payload.
+REM       Click run and let it happen, don't move! Might not work properly on every system due to timings, screen resolution, etc...
+
+DELAY 3000
+MOUSE MOVE -10000 -10000
+DELAY 200
+MOUSE MOVE 200 200
+DELAY 200
+MOUSE CLICK 1
+DELAY 200
+STRING  Hi!
+DELAY 1000
+BACKSPACE
+BACKSPACE
+BACKSPACE
+BACKSPACE
+TAB     
+DELAY 100
+TAB
+DELAY 100
+TAB     
+DELAY 100
+MOUSE MOVE -10000 -10000
+DELAY 200
+MOUSE MOVE 200 200
+DELAY 200
+ENTER
+MOUSE CLICK 1
