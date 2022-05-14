@@ -1,0 +1,19 @@
+REM Title: Webcam_Fun
+REM Author: LulzAnarchyAnon
+REM Description: A simple, and very basic payload that turns on the targets webcam... 
+REM (Where you take this payload from here is up to you)
+REM Target: Windows 10-11
+Props: Hak5
+REM Version: 1.0
+REM Category: Prank
+
+REM Payload may need to be adjusted depending on target system, but on the Two systems tested 
+REM it deployed in about 3 seconds.
+
+
+GUI 
+DELAY 10
+SPACE
+STRING camera
+DELAY 10
+ENTER
