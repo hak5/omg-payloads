@@ -1,0 +1,20 @@
+REM Title: PowerShell_Administrator
+REM Author: LulzAnarchyAnon
+REM Description: There are many ways to open an Administrator PowerShell, but this is my version
+REM Depending on the device delays may need to be adjusted
+REM WHY? JUST FOR FUN, and because it's different...
+REM Target: Windows 10 
+REM Props: Hak5
+REM Version: 1.0
+REM Category: General
+
+
+GUI x
+DELAY 10
+a
+DELAY 10
+TAB
+DELAY 10 
+TAB
+DELAY 10 
+ENTER
