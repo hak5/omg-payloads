@@ -1,0 +1,54 @@
+REM       Setup-Automation
+REM       Version 1.0
+REM       OS: Multi
+REM       Author: 0iphor13
+
+REM       If you need to setup multiple cables via the python flasher, this might save you some time.
+REM       Make sure that another cable/plug/adapter is connected via programmer!
+REM       Make sure to be in the correct directory!
+REM       Make sure to set the right values for each section!
+
+DELAY 2000
+DUCKY_LANG de
+DELAY 500
+
+REM Make sure to be in the right directory
+
+STRING python3 flash.py
+DELAY 500
+ENTER
+DELAY 1000
+
+REM Set the number for the programmer port
+
+STRING 1
+DELAY 500
+ENTER
+DELAY 1000
+
+REM Number 1 for flashing new firmware onto the device
+
+STRING 1
+DELAY 500
+ENTER
+DELAY 1000
+
+REM Number 1 for Station mode - Number 2 for Access Point mode
+
+STRING 2
+DELAY 500
+ENTER
+DELAY 1000
+
+REM Wifi SSID
+
+STRING OMG
+DELAY 500
+ENTER
+DELAY 1000
+
+REM Wifi password
+
+STRING OMGsetup
+DELAY 500
+ENTER
