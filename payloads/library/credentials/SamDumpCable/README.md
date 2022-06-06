@@ -20,4 +20,4 @@ Afterwards you can use a tool like samdump2 to extract the users hashes.</p>
 3. Use a tool like samdump2 on your machine to extract the users hashes.
 	> `samdump2 1337OMGsys 1337OMGsam`
 
-![alt text](https://github.com/0iphor13/omg-payloads/blob/master/payloads/library/credentials/SamDumpCable/samdump.png)
+![alt text](https://github.com/0iphor13/omg-payloads/blob/master/payloads/library/credentials/SamDumpCable/sam.png)
