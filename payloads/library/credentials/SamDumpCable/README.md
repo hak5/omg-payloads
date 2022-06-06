@@ -7,7 +7,7 @@ Requirements: OMG Firmware v.2.5 or higher</p>
 
 **What is SamDumpCable?**
 #
-<p>RSamDumpCable dumps the users sam and system hive and compress them into a zip file.<br>
+<p>SamDumpCable dumps the users sam and system hive and compress them into a zip file.<br>
 Afterwards you can use a tool like samdump2 to extract the users hashes.</p>
 
 
