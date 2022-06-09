@@ -1,8 +1,9 @@
-REM Title: BlueScreenOfDeath
+REM Title: Blue_Screen_Of_Death
 REM Author: LulzAnarchyAnon
 REM Description: A web browser downloads a blue screen of death image. Then saves it to the 
-REM downloads folder as an ms paint image where it is then set as the desktop wallpaper. All desktop icons are hidden.
-REM Target: Windows 10 (Powershell)
+REM downloads folder where it is set as the desktop wallpaper. All desktop icons and, the
+REM taskbar are hidden.
+REM Target: Windows 10
 Props: Darren Kitchen, and cribb-it 
 REM Version: 1.0
 REM Category: Prank
@@ -52,5 +53,23 @@ ENTER
 DELAY 1000
 ENTER
 DELAY 2000
+STRING taskbar settings
+DELAY 1000
+GUI r 
+DELAY 1000
+STRING ms-settings:taskbar
+DEALY 2000
+ENTER
+DELAY 500
+TAB
+DELAY 500
+TAB
+DELAY 500
+TAB
+DELAY 500
+SPACE
+DELAY 500
+GUI d
+DELAY 500
 STRING exit
 ENTER
