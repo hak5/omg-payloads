@@ -1,0 +1,100 @@
+REM Title: Seniors_Webcam_Prank
+REM Author: LulzAnarchyAnon
+REM Description: The first thing is volume is increased to 100% to draw attention.
+REM Afterwards Two seniors appear to be webcaming with you, and you don't know why!
+REM Target: Windows 10 PowerShell
+REM Props: Darren Kitchen and I am Jakoby
+REM Version: 1.0
+REM Category: Prank
+
+
+GUI r
+DELAY 200
+STRING powershell -windowstyle hidden 
+DELAY 200
+ENTER
+DELAY 500
+STRING Function Set-SoundVolume 
+DELAY 100
+ENTER
+STRING {
+DELAY 100
+ENTER
+STRING    Param(
+DELAY 100
+ENTER
+STRING        [Parameter(Mandatory=$true)]
+DELAY 100
+ENTER
+STRING        [ValidateRange(0,100)]
+DELAY 100
+ENTER
+STRING        [Int]
+DELAY 100
+ENTER
+STRING        $volume
+DELAY 100
+ENTER
+STRING    )
+DELAY 100
+ENTER
+
+    # Calculate number of key presses. 
+STRING    $keyPresses = [Math]::Ceiling( $volume / 2 )
+DELAY 100
+ENTER
+    
+    # Create the Windows Shell object. 
+STRING    $obj = New-Object -ComObject WScript.Shell
+DELAY 100
+ENTER
+    
+    # Set volume to zero. 
+STRING    1..50 | ForEach-Object {  $obj.SendKeys( [char] 174 )  }
+DELAY 100
+ENTER
+    
+    # Set volume to specified level. 
+STRING    for( $i = 0; $i -lt $keyPresses; $i++ )
+DELAY 100
+ENTER
+STRING    {
+DELAY 100
+ENTER
+STRING        $obj.SendKeys( [char] 175 )
+DELAY 100
+ENTER
+STRING    }
+DELAY 100
+ENTER
+STRING }
+DELAY 100
+ENTER
+STRING New-Alias -Name "ssv" Set-SoundVolume
+DELAY 100
+ENTER
+ 
+# Example usage
+STRING Set-SoundVolume 100
+DELAY 100
+ENTER
+DELAY 1000
+STRING exit
+DELAY 100
+ENTER
+DELAY 5000
+
+
+GUI r
+DELAY 100
+STRING cmd /c start https://www.youtube.com/watch?v=HwdPJwIaVfg
+DELAY 200
+ENTER
+DELAY 500
+TAB
+DELAY 200
+ENTER
+DELAY 200
+TAB
+DELAY 200
+f
