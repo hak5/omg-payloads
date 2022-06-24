@@ -1,0 +1,40 @@
+REM Title: Address_Bar_Attack
+REM Author: LulzAnarchyAnon
+REM Description: A hidden PowerShell is opened, and afterwards it BEGINS!
+REM A Firefox browser is opened, or can already be open at which time TAB 
+REM after TAB of sites open. I chose for 8 Social Media Sites to open.
+REM Target: Windows 10, 11, PowerShell and Firefox
+REM Props: Darren Kitchen, and to MG for all his help.
+REM Props: I am Jakoby for the burst of inspiration in writing with 
+REM PowerShell again.
+REM Version: 1.0
+REM Category: Prank
+
+GUI r
+DELAY 100
+STRING powershell -windowstyle hidden
+DELAY 200
+ENTER
+DELAY 200
+STRING $urls = @("https://www.yahoo.com/","https://www.youtube.com/","https://www.facebook.com/","https:
+DELAY 200
+ENTER
+STRING //twitter.com/?lang=en/","https://www.pinterest.com/","https://www.reddit.com/","https:
+DELAY 200
+ENTER
+STRING //www.instagram.com/?hl=en/","https://www.snapchat.com/")
+
+DELAY 200
+ENTER
+STRING foreach($url in $urls){
+DELAY 200
+ENTER
+STRING    start "C:\Program Files\Mozilla Firefox\firefox.exe" -ArgumentList @( '-private-window' , $url)
+DELAY 200
+ENTER
+STRING    Start-Sleep -Seconds 1
+DELAY 200
+ENTER
+STRING }
+DELAY 200
+ENTER
