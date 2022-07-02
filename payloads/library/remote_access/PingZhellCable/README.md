@@ -1,8 +1,8 @@
 **Title: PingZhellCable**
 
-Author: 0iphor13
+<p>Author: 0iphor13<br>
 OS: Windows<br>
-Version: 1.0<br>
+Version: 1.1<br>
 Requirements: OMG Firmware v.2.5 or higher</p>
 
 **What is PingZhellCable?**
