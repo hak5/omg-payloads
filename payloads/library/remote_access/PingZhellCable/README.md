@@ -11,7 +11,7 @@ Requirements: OMG Firmware v.2.5 or higher</p>
 *But many environments allow ping requests to be sent and received. Ping requests work on the ICMP protocol.*
 *ICMP stands for Internet Control Message Protocol; it is used by network devices’ query and error messages. ICMP differs from the widely used TCP and UDP protocols because ICMP is not used for transferring data between network devices.*
 *When a device wants to test connectivity to another device, it uses the PING tool (ICMP communication) to send an ECHO REQUEST and waits for an ECHO RESPONSE.*
-*The client ICMP agent (PingZhellClient.pl) listens for ICMP packets from a specific host and uses the data in the packet for command execution.*
+*The client ICMP agent listens for ICMP packets from a specific host and uses the data in the packet for command execution.*
 *The server ICMP agent (PingZhellClient.pl) sends ICMP packets to connect to the victim running a custom ICMP agent (PingZhellCable input) and sends it commands to execute.*
 #
 There you go, a reverse shell without the usage of ports.
