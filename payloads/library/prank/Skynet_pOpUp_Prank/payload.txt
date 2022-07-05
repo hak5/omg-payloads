@@ -1,0 +1,41 @@
+REM Title: Skynet_pOpUp_Prank
+REM Author: LulzAnarchyAnon
+REM Description: A windows balloon pop up notifies you Skynet is 
+REM awaiting final instructions. PRESS ANY KEY TO CONTINUE
+REM Target: Windows 10 PowerShell
+Props: Darren Kitchen and I am Jakoby
+REM Version: 1.0
+REM Category: Prank
+
+GUI r
+DELAY 500
+STRING powershell -windowstyle hidden 
+ENTER
+DELAY 1000
+STRING Add-Type -AssemblyName System.Windows.Forms 
+DELAY 500
+ENTER
+STRING $global:balloon = New-Object System.Windows.Forms.NotifyIcon
+DELAY 500
+ENTER
+STRING $path = (Get-Process -id $pid).Path
+DELAY 500
+ENTER
+STRING $balloon.Icon = [System.Drawing.Icon]::ExtractAssociatedIcon($path) 
+DELAY 500
+ENTER
+STRING $balloon.BalloonTipIcon = [System.Windows.Forms.ToolTipIcon]::Warning 
+DELAY 500
+ENTER
+STRING $balloon.BalloonTipText = 'SKYNET IS AWAITING FINAL INSTRUCTIONS. PRESS ANY KEY TO CONTINUE'
+DELAY 500
+ENTER
+STRING $balloon.BalloonTipTitle = "Attention $Env:USERNAME" 
+DELAY 500
+ENTER
+STRING $balloon.Visible = $true 
+DELAY 500
+ENTER
+STRING $balloon.ShowBalloonTip(5000)
+DELAY 500
+ENTER
