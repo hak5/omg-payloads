@@ -1,12 +1,12 @@
 **Title: RemoteDeskCable**
 
-Author: 0iphor13
-
-Version: 1.0
+<p>Author: 0iphor13<br>
+OS: Windows<br>
+Version: 2.0</p>
 
 What is RemoteDeskCable?
 #
-*The O.MG Cable is a powerfull tool and can be used as a remote HID, to even increase the power, RemoteDeskCable was released. - Get screen access!*
+*The O.MG devices are powerfull tools and can be used as a remote HID, to even increase the power, RemoteDeskCable was released. - Get screen access!*
 *See what your victim is doing, see when the time is right to fire up your next payload!*
 #
 
@@ -14,8 +14,8 @@ What is RemoteDeskCable?
 
 !!!Insert the IP of your attacking machine & PORT into the payload!!!
 #
-Plug in Cable.
-Start netcat on your attacking machine like so: nc -lvnp 1234 | nc -lvnp 5678 (Example Ports) This will create a relay towards your second port.
+Start netcat on your attacking machine like so: `nc -lvnp 1234 | nc -lvnp 5678` (Example Ports) This will create a relay towards your second port.
+Plug in your Cable/Plug/Adapter - run away
 #
 Use a browser supporting MJPEG, like FireFox, and visit 127.0.0.1:5678.
 Fire up the payload and for the screenshare to appear within FireFox.
