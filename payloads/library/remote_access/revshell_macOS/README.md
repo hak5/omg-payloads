@@ -1,5 +1,4 @@
-# This is, at heart, is a simple reverse shell to gain access to another MacOSX device. I'm looking into creating a tight shell that can run like a daemon
-# but that is a wet dream atm.
+# This is, at heart, is a simple reverse shell to gain access to another MacOSX device. I'm looking into creating a tight shell that can run like a daemon but that is a wet dream atm.
 
 # FIRST STEP(s):
 # run "nc -l <any port>" on the attackers machine
