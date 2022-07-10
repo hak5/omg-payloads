@@ -2,10 +2,11 @@
 
 # FIRST STEP(s):
 # run this on the attackers machine
-nc -l <any port>
+    nc -l 'any port'
 # This initialzes your computers listening protocol to look for TCP connections
-**IMPORTANT**
-# open another Terminal window and run "ipconfig getifaddr en0" to obtain your computers local ip (this is important for the next step)
+# IMPORTANT
+# open another Terminal window and run to obtain your computers local ip (this is important for the next step)
+    ipconfig getifaddr en0
 
 # NEXT STEP:
 # Then simply run the script in your O.MG UI when the cable is connected
