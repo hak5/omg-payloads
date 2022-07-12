@@ -3,8 +3,7 @@ REM       Version 2.0
 REM       OS: Windows
 REM       Author: 0iphor13
 REM	      Requirements: OMG Firmware v.2.5 or higher
-
-REM       Getting remote screen access to view your targets actions
+REM       description: Getting remote screen access to view your targets actions
 
 DELAY 500
 DUCKY_LANG de
