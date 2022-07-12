@@ -2,7 +2,8 @@
 
 <p>Author: 0iphor13<br>
 OS: Windows<br>
-Version: 2.0</p>
+Version: 2.1<br>
+Requirements: OMG Firmware v.2.5 or higher</p>
 
 What is RemoteDeskCable?
 #
