@@ -34,3 +34,9 @@ password", but there are 1000s of things you could exfiltrate via PowerShell
 or other means, that's up to you! :)
 
 I don't know how much you can fit in settings but I'd error on less over more.
+
+## Credits
+
+https://gist.github.com/byt3bl33d3r/910b3161d54c2d6a3d5e1050c4e1013e
+
+https://github.com/O-MG/O.MG-Firmware/wiki/WebSocket-API
