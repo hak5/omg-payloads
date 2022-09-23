@@ -7,6 +7,12 @@ device (at least at the time of writing), so this code does local exfil by
 connecting the target to the O.MG Plug's own WiFi and using WebSockets to save
 data to a setting. This assumes a WiFi-enabled target of course.
 
+## Demo
+
+https://user-images.githubusercontent.com/116893/192064207-ab2ee10e-a0d7-4e64-9f43-6e9dbe442f21.mp4
+
+[YouTube link if the embed doesn't work](https://www.youtube.com/watch?v=mlq4JWFkLZI)
+
 ## Requirements
 
 This is built specifically for the O.MG Plug "Basic" edition (I don't know if
