@@ -39,7 +39,8 @@ This is just a proof-of-concept, and only exfiltrates the words "Secret
 password", but there are 1000s of things you could exfiltrate via PowerShell
 or other means, that's up to you! :)
 
-I don't know how much you can fit in settings but I'd error on less over more.
+I don't know how much you can fit in settings but I'd err towards less over
+more.
 
 ## Credits
 
