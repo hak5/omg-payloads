@@ -39,7 +39,6 @@ ENTER
 
 REM ----------------------------------
 REM Connect to the O.MG AP.
-REM TODO: Await O.MG AP being active.
 REM ----------------------------------
 
 STRING echo '<?xml version="1.0"?><WLANProfile xmlns="http://www.microsoft.com/networking/WLAN/profile/v1"><name>O.MG</name><SSIDConfig><SSID><name>O.MG</name></SSID></SSIDConfig><connectionType>ESS</connectionType><MSM><security><authEncryption><authentication>WPA2PSK</authentication><encryption>AES</encryption><useOneX>false</useOneX></authEncryption><sharedKey><keyType>passPhrase</keyType><protected>false</protected><keyMaterial>12345678</keyMaterial></sharedKey></security></MSM></WLANProfile>' > profile.xml
