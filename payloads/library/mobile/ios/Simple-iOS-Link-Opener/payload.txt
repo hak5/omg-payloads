@@ -1,7 +1,7 @@
 REM Version 1.0
 REM OS: iOS
 REM Author: Peaakss
-REM Description: A simple payload to open a link in safari within iOS | -- You will need a Lighting to USB-A or USB-c to plug the ative end of the O.MG cable into
+REM Description: A simple payload to open a link in safari within iOS | -- You will need a Lighting to USB-A or USB-c to plug the ative end of the O.MG cable into | on line 15 Replace "URL" with the desired URL (EXAMPLE: STRING google.com)
 
 GUI h
 DELAY 100
