@@ -3,6 +3,7 @@ REM OS: iOS
 REM Author: Peaakss
 REM Description: A simple payload that sens a text message through iOS Messager
 REM NOTICE change text inside strings with "" to desried text | EXAMPLE | STRING 111-111-111
+REM NOITCE Payload was made on iOS 16.1 - iPhone
 
 GUI h
 DELAY 100
