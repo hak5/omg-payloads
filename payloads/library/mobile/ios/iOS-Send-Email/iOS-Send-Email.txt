@@ -3,6 +3,7 @@ REM OS: iOS
 REM Author: Peaakss
 REM Description: A simple payload to send a email from the Mail app 
 REM NOTICE (Replace "TEXT" within the string commands with the desired text | EXAMPLE: STRING example@gmail.com
+REM NOITCE Payload was made on iOS 16.1 - iPhone
 
 GUI h
 DELAY 100
