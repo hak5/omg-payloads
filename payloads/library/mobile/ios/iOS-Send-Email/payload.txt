@@ -1,0 +1,29 @@
+REM Version 1.0
+REM OS: iOS
+REM Author: Peaakss
+REM Description: A simple payload to send a email from the Mail app 
+REM NOTICE (Replace "TEXT" within the string commands with the desired text | EXAMPLE: STRING example@gmail.com
+
+GUI h
+DELAY 100
+GUI SPACE 
+DELAY 100
+BACKSPACE
+DELAY 60
+STRING Mail
+DELAY 50
+ENTER 
+GUI N
+STRING "TO-ADRESS"
+DELAY 100
+ENTER
+TAB
+DELAY 100
+STRING "SUBJECT"
+DELAY 100
+ENTER
+DELAY 100
+STRING "MESSAGE"
+GUI-SHIFT d
+DELAY 100 
+ENTER
