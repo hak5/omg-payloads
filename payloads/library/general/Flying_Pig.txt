@@ -1,0 +1,72 @@
+REM Title: Flying_Pig
+REM Description: Installs snort > pulled pork > splunk 
+REM Author: evodefense
+REM Target: Ubuntu 22
+REM This payload is usable to help get started with Snort pulled pork and splunk NIDS
+REM This is for use in good karma only with permission and within all applicable authoritys and regulations per your application.
+REM I could not of made this without the community and amazing amount of educational material online for free. Thx
+
+REM Snort
+
+DELAY 1000
+GUI r
+DELAY 500
+STRING cmd
+DELAY 500
+ENTER
+DELAY 500
+STRING sudo apt-get update
+ENTER
+DELAY 500
+STRING sudo apt-get install -y build-essential libpcre3 libpcre3-dev libpcap-dev libdumbnet-dev bison flex zlib1g-dev
+ENTER
+DELAY 500
+STRING wget https://www.snort.org/downloads/snort/snort-2.9.17.tar.gz
+ENTER
+DELAY 500
+STRING tar -xvzf snort-2.9.17.tar.gz
+ENTER
+DELAY 500
+STRING cd snort-2.9.17
+ENTER
+DELAY 500
+STRING ./configure --enable-sourcefire && make && sudo make install
+ENTER
+DELAY 500
+STRING sudo mkdir /etc/snort
+ENTER
+DELAY 500
+STRING sudo touch /etc/snort/snort.conf
+ENTER
+DELAY 500
+STRING cd ..
+ENTER
+DELAY 500
+STRING wget https://github.com/shirkdog/pulledpork/archive/master.zip
+ENTER
+DELAY 500
+STRING unzip master.zip
+ENTER
+DELAY 500
+STRING cd pulledpork-master
+ENTER
+DELAY 500
+STRING sudo cp pulledpork.pl /usr/local/bin
+ENTER
+DELAY 500
+STRING sudo chmod +x /usr/local/bin/pulledpork.pl
+ENTER
+DELAY 500
+STRING sudo cp etc/pulledpork.conf /etc/snort
+ENTER
+DELAY 500
+STRING sudo sed -i "s/rule_url=https://rules.snort.org/download/[YOUR_OINKCODE]/snortrules-snapshot.tar.gz/rule_url=https://www.snort.org/reg-rules/|snortrules-snapshot.tar.gz|[YOUR_OINKCODE]/" /etc/snort/pulledpork.conf
+ENTER
+DELAY 500
+STRING sudo /usr/local/bin/pulledpork.pl -c /etc/snort/pulledpork.conf -l
+ENTER
+DELAY 500
+STRING cd /opt
+ENTER
+DELAY 500
+STRING wget https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=8.0.3&product=splunk&filename=splunk-8.0.3-a

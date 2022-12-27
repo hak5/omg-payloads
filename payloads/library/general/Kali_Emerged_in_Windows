@@ -1,0 +1,55 @@
+REM Title: Kali_Emerged
+REM Description: Installs wsl Kali on windows host 
+REM Author: evodefense
+REM Target: Windows 10/11
+REM This payload is usable to help windows users create a dragon
+REM This is for use in good karma only with permission and within all applicable authoritys and regulations per your application.
+REM I could not of made this without the community and amazing amount of educational material online for free. Thx
+
+REM Enable the Windows Subsystem for Linux feature
+DELAY 1000
+GUI r
+DELAY 500
+STRING powershell
+DELAY 500
+ENTER
+DELAY 500
+STRING Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+DELAY 500
+ENTER
+
+REM Restart the computer to complete the WSL 2 installation
+DELAY 5000
+STRING shutdown /r /t 0
+DELAY 500
+ENTER
+
+REM Wait for the computer to restart
+DELAY 60000
+
+REM Install Kali Linux from the Microsoft Store
+DELAY 1000
+GUI r
+DELAY 500
+STRING Microsoft Store
+DELAY 500
+ENTER
+DELAY 1000
+STRING Kali Linux
+DELAY 500
+ENTER
+DELAY 1000
+STRING Install
+DELAY 500
+ENTER
+
+REM Wait for the installation to complete
+DELAY 80000
+
+REM Launch Kali Linux
+DELAY 1000
+GUI r
+DELAY 500
+STRING Kali Linux
+DELAY 500
+ENTER
