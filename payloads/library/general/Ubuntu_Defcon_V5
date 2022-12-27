@@ -1,0 +1,93 @@
+REM Title: Ubuntu_Defcon_V5
+REM Description: Basic setup for new install of ubuntu
+REM Author: evodefense
+REM Target: Ubuntu 22
+REM Fast deploy security defenses for ubuntu
+REM MFor use in good karma only with permission and within all applicable authoritys and regulations.
+REM This could be used to introduce windows user to linux as a start to escaping the matrix.
+REM I could not of made this without the community and amazing amount of educational material online for free. Thx
+
+
+DELAY 1000
+
+# Update the package list and upgrade existing packages
+STRING sudo apt update
+ENTER
+DELAY 1000
+STRING sudo apt upgrade -y
+ENTER
+
+# Install some security-related packages
+STRING sudo apt install -y fail2ban
+ENTER
+DELAY 2000
+STRING sudo apt install -y ufw
+ENTER
+DELAY 2000
+STRING sudo apt install -y rkhunter
+ENTER
+DELAY 2000
+STRING sudo apt install -y clamav
+ENTER
+DELAY 2000
+STRING sudo apt install tiger
+ENTER
+STRING sudo apt install lynis
+ENTER
+DELAY 2000
+
+# Configure the firewall rules
+STRING sudo ufw default allow outgoing
+ENTER
+STRING sudo ufw default deny incoming
+ENTER
+STRING sudo ufw allow ssh
+ENTER
+
+# Enable the firewall
+STRING sudo ufw enable
+ENTER
+
+# Start fail2ban
+STRING sudo service fail2ban start
+ENTER
+
+# Run a scan with rkhunter
+STRING sudo rkhunter --check
+ENTER
+DELAY 5000
+ENTER
+DELAY 5000
+Enter
+DELAY 5000
+
+# Run a scan with ClamAV
+STRING sudo clamscan -r /
+ENTER
+DELAY 2000
+
+# Enable automatic updates
+STRING sudo apt install -y unattended-upgrades
+ENTER
+STRING sudo dpkg-reconfigure -plow unattended-upgrades
+ENTER
+
+# Enable AppArmor and enforce profiles
+STRING sudo apt install -y apparmor apparmor-utils
+ENTER
+STRING sudo aa-enforce /etc/apparmor.d/*
+ENTER
+
+# Enable auditing
+STRING sudo apt install -y auditd
+ENTER
+STRING sudo sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="audit=1"/' /etc/default/grub
+ENTER
+STRING sudo update-grub
+ENTER
+
+# Enable two-factor authentication for SSH
+STRING sudo apt install -y libpam-google-authenticator
+ENTER
+STRING sudo sed -i 's/^ChallengeResponseAuthentication.*/ChallengeResponseAuthentication yes/' /etc/ssh/sshd_config
+ENTER
