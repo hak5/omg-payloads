@@ -6,11 +6,6 @@ REM # Target: Tested on Android 11 device, it may require changes to work on new
 REM # Note: This script will only work if the target have whatsapp without lock
 REM # ---------------------------------------------------------------------------------------------------
 
-
-REM # ---------------------------------------------------------------------------------------------------
-REM # Enter the mobile number you want to send message
-REM # ---------------------------------------------------------------------------------------------------
-
 REM # Enter your phone here
 STRING https://wa.me/+91xxxxxxxxxx
 ENTER
