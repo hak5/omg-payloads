@@ -1,0 +1,22 @@
+REM Version 1.0
+REM OS: iOS
+REM Author: Peaakss
+REM Description: A simple payload that creates a new first name contact and saves it
+REM NOITCE Payload was made on iOS 16.2 - iPhone | Timing may have have to be changed based on version/model
+REM NOTICE Lighting to USB-A or USB-C camera adapter is needed to run this payload, ative end of the O.MG cable must be plugged into the end of the adapter
+
+GUI h
+DELAY 150
+GUI SPACE
+DELAY 150
+STRING Contacts
+DELAY 150
+ENTER
+DELAY 150
+GUI n
+DELAY 150
+STRING "NAME"
+DELAY 150 
+GUI s
+DELAY 150
+GUI h
