@@ -1,0 +1,60 @@
+REM Version 1.0
+REM OS: iOS
+REM Author: Peaakss
+REM Description: This payload enables Assistive touch on the device to create a new note with song lyrics and then spin the device screen using Assistive Touch
+REM NOITCE Payload was made on iOS 15.5 - iPhone | Timing may have have to be changed based on version/model
+REM NOTICE Lighting to USB-A or USB-C camera adapter is needed to run this payload, ative end of the O.MG cable must be plugged into the end of the adapter
+REM NOTICE This payload needs Full Keyboard Access to enabled on the device
+
+
+DEFAULT_DELAY 250
+GUI h
+GUI SPACE
+BACKSPACE
+STRING AssistiveTouch
+ENTER
+SPACE
+SPACE
+GUI h
+GUI SPACE
+BACKSPACE
+STRING Notes
+ENTER
+TAB
+TAB
+SPACE
+STRING You spin me right 'round, baby, right 'round Like a record, baby, right 'round, 'round, 'round 
+ENTER
+STRING You spin me right 'round, baby, right 'round Like a record, baby, right 'round, 'round, 'round 
+TAB RIGHTARROW
+DEFAULT_DELAY 100
+SPACE
+RIGHTARROW
+SPACE
+RIGHTARROW
+SPACE
+DOWNARROW
+RIGHTARROW
+SPACE
+DOWNARROW
+DOWNARROW
+SPACE
+SPACE
+DOWNARROW
+DOWNARROW
+RIGHTARROW
+SPACE
+DOWNARROW
+DOWNARROW
+RIGHTARROW
+RIGHTARROW
+SPACE
+DOWNARROW
+DOWNARROW
+SPACE
+SPACE
+LEFTARROW
+SPACE
+DOWNARROW
+DOWNARROW
+SPACE
