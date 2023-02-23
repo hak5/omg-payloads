@@ -1,5 +1,5 @@
 REM Title: RickRoll Apple
-REM Author:	Kalani (minor mod by UberGuidoZ)
+REM Author:	Kalani (minor mod by UberGuidoZ) - (Updated by Peaks)
 REM Kalani wrote the original code, just modded to a Rick Roll!
 REM
 REM Description: Opens Safari, enters YouTube link, goes full screen.
@@ -12,7 +12,8 @@ DELAY 300
 STRING Safari
 ENTER
 DELAY 500
-GUI t
+GUI n
+GUI l
 https://www.youtube.com/watch?v=xm3YgoEiEDc
 ENTER
 DELAY 500
