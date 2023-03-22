@@ -9,6 +9,7 @@ REM [I wanna thank Kalani and the OMG team for assistance on this payload and th
 
 DEFAULT_DELAY 2500
 
+FUNCTION Key
 GUI h
 GUI h
 GUI SPACE
@@ -52,3 +53,6 @@ DOWNARROW
 RIGHTARROW
 SPACE
 GUI h
+END_FUNCTION
+
+Key
