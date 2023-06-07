@@ -2,8 +2,8 @@
 
 <p>Author: 0iphor13<br>
 OS: Windows<br>
-Version: 1.0<br>
-Requirements: OMG Firmware v.2.5 or higher</p>
+Version: 2.0<br>
+Requirements: OMG Firmware v.3.0 or higher</p>
 
 **What is ReverseCableSSL?**
 #
