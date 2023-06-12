@@ -1,0 +1,45 @@
+REM ###########################################
+REM #                                         |
+REM # Title        : Change Linux MAC Address |
+REM # Author       : Aleff                    |
+REM # Version      : 1.0                      |
+REM # Category     : Execution                |
+REM # Target       : Linux                    |
+REM #                                         |
+REM ###########################################
+
+REM Requirements:
+REM     - Permissions
+
+REM You need to know the sudo password and replace 'example' with this
+DEFINE SUDO_PASS example
+
+REM Set here your preferred MAC, you can don't change it remaining with the default value
+DEFINE NEW_MAC FF:FF:FF:FF:FF:FF
+
+DEFAULT_DELAY 500
+CTRL ALT t
+DELAY 2000
+
+REM #### PERMISSIONS SECTION ####
+STRINGLN sudo su
+DELAY 1000
+STRINGLN SUDO_PASS
+DELAY 1000
+
+REM #### MAC SECTION ####
+REM net-tools command
+STRINGLN apt install net-tools
+DELAY 2000
+
+REM Get the net interface name
+STRINGLN INTERFACE=$(ip route get 8.8.8.8 | awk '{print $5}')
+STRINGLN ifconfig $INTERFACE down
+STRINGLN ifconfig $INTERFACE hw ether NEW_MAC
+STRINGLN ifconfig $INTERFACE up
+
+REM #### REMOVE TRACES ####
+DELAY 2000
+STRINGLN history -c
+REM Close shell
+STRINGLN exit
