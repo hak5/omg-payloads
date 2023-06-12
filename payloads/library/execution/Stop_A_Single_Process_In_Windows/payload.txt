@@ -1,0 +1,38 @@
+REM #####################################################
+REM #                                                   |
+REM # Title        : Stop A Single Process In Windows   |
+REM # Author       : Aleff                              |
+REM # Version      : 1.0                                |
+REM # Category     : Execution                          |
+REM # Target       : Windows 10/11                      |
+REM #                                                   |
+REM #####################################################
+
+
+REM Requirements:
+REM     - Nothing
+
+
+REM Write the name of the process that you want to stop 
+DEFINE PROCESS_NAME example
+
+DEFAULT_DELAY 500
+REM Open Task Manager
+GUI
+STRINGLN Task Manager
+
+REM Goto search bar
+REPEAT 4 TAB
+
+REM Write the process name
+STRINGLN PROCESS_NAME
+REPEAT 4 TAB
+
+REM Open the menu and close it ending the task
+SHIFT F10
+REPEAT 2 DOWNARROW
+ENTER
+DELAY 2000
+
+REM Close the task manager
+ALT F4
