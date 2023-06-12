@@ -15,61 +15,29 @@ REM Note:
 REM     - Payload tested on Windows 11 Eng 
 
 REM Set the exact name of the application as it appears within the control panel. Do not assume that just because an application is known by a certain name then it will have exactly that name, e.g. `Firefox` shows up again as `Mozilla Firefox (x64 en)`
-DEFINE APP_NAME example
 
+DEFINE APP_NAME example
+DEFAULT_DELAY 500
 
 REM Open Windows research
-DELAY 2000
 GUI
-DELAY 1000
 
-REM Search and opern explorer app
-STRING explorer
-ENTER
-DELAY 1000
+REM Search and open explorer app
+STRINGLN explorer
 
 REM Goto search bar and open "Uninstall or change a program" page
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
+REPEAT 3 TAB
 ENTER
-DELAY 500
-STRING Control Panel\Programs\Programs and Features
-ENTER
-DELAY 1500
+STRINGLN Control Panel\Programs\Programs and Features
+DELAY 1000
 
 REM Goto search bar and search the app
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
+REPEAT 4 TAB
 STRING APP_NAME
-DELAY 500
 
 REM Select the app and click on it
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
+REPEAT 6 TAB
 SPACE
-DELAY 500
-ENTER
-DELAY 500
-ENTER
+REPEAT 2 ENTER
 DELAY 2000
 ALT F4
