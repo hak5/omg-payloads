@@ -1,0 +1,59 @@
+REM ###############################################
+REM #                                             |
+REM # Title        : Change Network Configuration |
+REM # Author       : Aleff                        |
+REM # Version      : 1.0                          |
+REM # Category     : Execution                    |
+REM # Target       : Linux                        |
+REM #                                             |
+REM ###############################################
+
+REM Requirements:
+REM     - Permissions
+
+REM Required: You need to know the sudo password and replace 'example' with this
+DEFINE SUDO_PASS example
+DEFINE #IPADDRESS 192.168.1.100
+DEFINE #SUBNETMASK 255.255.255.0
+DEFINE #GATEWAY 192.168.1.1
+
+
+DELAY 1000
+CTRL-ALT t
+DELAY 2000
+
+
+REM #### PERMISSIONS SECTION ####
+STRINGLN sudo su
+
+DELAY 1000
+STRINGLN SUDO_PASS
+DELAY 1000
+
+REM #### IP SECTION ####
+REM net-tools command
+STRING apt install net-tools
+ENTER
+DELAY 2000
+
+REM Set network interface
+
+STRINGLN IP="#IPADDRESS"
+DELAY 500
+STRINGLN MASK="#SUBNETMASK"
+DELAY 500
+STRINGLN GATEWAY="#GATEWAY"
+DELAY 500
+
+REM Get the net interface name
+STRINGLN INTERFACE=$(ip route get 8.8.8.8 | awk '{print $5}')
+DELAY 500
+STRINGLN ifconfig $INTERFACE $IP netmask $MASK up
+DELAY 500
+
+REM #### REMOVE TRACES ####
+STRINGLN history -c
+DELAY 500
+
+REM Close shell
+STRINGLN exit
