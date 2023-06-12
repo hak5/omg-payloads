@@ -8,7 +8,6 @@ REM # Target       : Windows 10-11                            |
 REM #                                                         |
 REM ###########################################################
 
-
 REM Requirements:
 REM     - Internet connection
 
