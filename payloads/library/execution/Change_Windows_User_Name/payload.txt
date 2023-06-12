@@ -17,39 +17,25 @@ REM     - Payload tested on Windows 11 Eng
 REM Set the new name that you want to set
 DEFINE NEW_NAME example
 
+DEFAULT_DELAY 500
 REM Open Windows research
-DELAY 2000
 GUI
 DELAY 1000
 
 REM Search and opern explorer app
-STRING explorer
-ENTER
-DELAY 1000
+STRINGLN explorer
 
 REM Goto search bar and open User Accounts settings
-TAB
-DELAY 500
-TAB
-DELAY 500
-TAB
-DELAY 500
+REPEAT 3 TAB
 ENTER
-DELAY 500
-STRING Control Panel\All Control Panel Items\User Accounts
-ENTER
+STRINGLN Control Panel\All Control Panel Items\User Accounts
 DELAY 1500
 
 REM Goto "Change you account name"
 TAB
-DELAY 500
 ENTER
-DELAY 500
 
 STRING NEW_NAME
-DELAY 500
 TAB
-DELAY 500
 ENTER
-DELAY 1000
 ALT F4
