@@ -11,70 +11,49 @@ REM ###############################################
 REM Requirements:
 REM     - Permissions
 
+REM Required: You need to know the sudo password and replace 'example' with this
+DEFINE SUDO_PASS example
+DEFINE #IPADDRESS 192.168.1.100
+DEFINE #SUBNETMASK 255.255.255.0
+DEFINE #GATEWAY 192.168.1.1
+
+
 DELAY 1000
 CTRL-ALT t
 DELAY 2000
 
 
 REM #### PERMISSIONS SECTION ####
-
-
-REM Required: You need to know the sudo password and replace 'example' with this
-DEFINE SUDO_PASS example
-STRING sudo su
-ENTER
+STRINGLN sudo su
 
 DELAY 1000
-STRING SUDO_PASS
-ENTER
+STRINGLN SUDO_PASS
 DELAY 1000
-
 
 REM #### IP SECTION ####
-
-
 REM net-tools command
 STRING apt install net-tools
 ENTER
 DELAY 2000
 
 REM Set network interface
-DEFINE IP 192.168.1.100
-DEFINE MASK 255.255.255.0
-DEFINE GATEWAY 192.168.1.1
 
-STRING IP="
-STRING IP
-STRING "
-ENTER
+STRINGLN IP="#IPADDRESS"
 DELAY 500
-STRING MASK="
-STRING MASK
-STRING "
-ENTER
+STRINGLN MASK="#SUBNETMASK"
 DELAY 500
-STRING GATEWAY="
-STRING GATEWAY
-STRING "
-ENTER
+STRINGLN GATEWAY="#GATEWAY"
 DELAY 500
 
 REM Get the net interface name
-STRING INTERFACE=$(ip route get 8.8.8.8 | awk '{print $5}')
-ENTER
+STRINGLN INTERFACE=$(ip route get 8.8.8.8 | awk '{print $5}')
 DELAY 500
-STRING ifconfig $INTERFACE $IP netmask $MASK up
-ENTER
+STRINGLN ifconfig $INTERFACE $IP netmask $MASK up
 DELAY 500
-
 
 REM #### REMOVE TRACES ####
-
-
-STRING history -c
-ENTER
+STRINGLN history -c
 DELAY 500
 
 REM Close shell
-STRING exit
-ENTER
+STRINGLN exit
