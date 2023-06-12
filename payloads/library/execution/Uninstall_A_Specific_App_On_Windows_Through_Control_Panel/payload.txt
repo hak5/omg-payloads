@@ -1,0 +1,43 @@
+REM ##############################################################################
+REM #                                                                            |
+REM # Title        : Uninstall A Specific App On Windows Through Control Panel   |
+REM # Author       : Aleff                                                       |
+REM # Version      : 1.0                                                         |
+REM # Category     : Execute                                                     |
+REM # Target       : Windows 10/11                                               |
+REM #                                                                            |
+REM ##############################################################################
+
+REM Requirements:
+REM     - The application you want to uninstall must be installed on the target (?obvious right? ^^)
+
+REM Note:
+REM     - Payload tested on Windows 11 Eng 
+
+REM Set the exact name of the application as it appears within the control panel. Do not assume that just because an application is known by a certain name then it will have exactly that name, e.g. `Firefox` shows up again as `Mozilla Firefox (x64 en)`
+
+DEFINE APP_NAME example
+DEFAULT_DELAY 500
+
+REM Open Windows research
+GUI
+
+REM Search and open explorer app
+STRINGLN explorer
+
+REM Goto search bar and open "Uninstall or change a program" page
+REPEAT 3 TAB
+ENTER
+STRINGLN Control Panel\Programs\Programs and Features
+DELAY 1000
+
+REM Goto search bar and search the app
+REPEAT 4 TAB
+STRING APP_NAME
+
+REM Select the app and click on it
+REPEAT 6 TAB
+SPACE
+REPEAT 2 ENTER
+DELAY 2000
+ALT F4
