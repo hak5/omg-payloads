@@ -11,7 +11,7 @@ ENTER
 DELAY 100
 GUI r
 DELAY 200
-STRING powershell -w h -ep bypass Remove-ItemProperty -Path ‘HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU’ -Name ‘*’ -ErrorAction SilentlyContinue
+STRING reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "Start_TrackProgs" /t REG_DWORD /d "0" /f
 ENTER
 DELAY 100
 EXIT
