@@ -1,0 +1,50 @@
+REM ########################################################
+REM #                                                      |
+REM # Title        : Add An Exception To Avast Antivirus   |
+REM # Author       : Aleff                                 |
+REM # Version      : 1.0                                   |
+REM # Category     : Execute                               |
+REM # Target       : Windows 10/11                         |
+REM #                                                      |
+REM ########################################################
+
+
+REM Requirements:
+REM     - Avast installed and configured
+
+
+REM Set the full-path that you want to set as exception
+DEFINE FULL-PATH example/to/path
+
+DEFAULT_DELAY 500
+REM Open Avast application
+DELAY 2000
+GUI
+STRINGLN avast
+
+REM Go to Avast menu
+DELAY 1000
+REPEAT 3 TAB
+ENTER
+
+REM Go to Avast settings
+DELAY 1000
+REPEAT 4 TAB
+ENTER
+
+REM Go to Exceptions menu
+DELAY 1000
+REPEAT 12 TAB
+ENTER
+
+REM Add Exception button
+TAB
+ENTER
+
+REM Write the full-path and then close the Avast app
+DELAY 1000
+TAB
+STRING FULL-PATH
+TAB
+ENTER
+ALT F4

@@ -1,0 +1,60 @@
+REM ########################################################
+REM #                                                      |
+REM # Title        : Set An Arbitrary DNS (IPv4 version)   |
+REM # Author       : Aleff                                 |
+REM # Version      : 1.0                                   |
+REM # Category     : Execution                             |
+REM # Target       : Windows 11                            |
+REM #                                                      |
+REM ########################################################
+
+
+REM Requirements:
+REM     - Nothing
+
+
+REM DNS IPv4 like Cloudflare DNS 1.1.1.1
+DEFINE DNS example
+
+
+DEFAULT_DELAY 500
+REM Open Settings
+GUI
+STRING settings
+ENTER
+
+REM Go to network settings
+REPEAT 3 DOWNARROW
+ENTER
+
+REM Go to Wi-Fi settings
+REPEAT 4 TAB
+ENTER
+
+REM Go to hardware properties settings
+REPEAT 16 TAB
+ENTER
+
+REM DNS Settings
+REPEAT 2 TAB
+ENTER
+
+REM Change to manual
+SPACE
+DOWNARROW
+ENTER
+
+REM Set the DNS server
+TAB
+SPACE
+TAB
+STRING DNS
+TAB
+ENTER
+
+REM Save settings
+DOWNARROW
+ENTER
+REPEAT 5 TAB
+ENTER
+ALT F4

