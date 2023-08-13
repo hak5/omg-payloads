@@ -12,7 +12,7 @@ REM Compatibility: Flipper Zero AND DuckyScript Devices
 REM Target: Windows
 
 REM To use on Flipper Zero REM the DUCKY_LANG US from line below
-REM DUCKY_LANG US
+DUCKY_LANG US
 DELAY 2000
 GUI r
 DELAY 500
