@@ -6,7 +6,7 @@ REM Author: Peaakss / Peaks
 REM -----------------------------------------------
 REM READ THIS BEFORE USING PAYLOAD
 
-REM Description: This payload uses a URL scheme to quickly navigate to a user profile on snapchat and add them as a friend
+REM Description: This payload uses a URL scheme to quickly call a defined phone number
 
 REM NOTICE Payload was made on iOS 16.4 - iPhone | Timing may have have to be changed based on version/model
 
