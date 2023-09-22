@@ -1,0 +1,35 @@
+REM       Windows11_CommandPrompt_Downgrade
+REM       Version 1.0
+REM       OS: Windows11
+REM       Author: 0iphor13
+REM       Requirements: OMG Firmware v.3.0 or higher
+REM       Changing the Command Prompt to Conhost, to enable hidden Powershell for certain W11 Builds.
+REM       Other Methods values are also provided for backup or simply playing around.
+
+
+REM Define your language below
+DUCKY_LANG de
+
+REM Value for Conhost
+DEFINE #CONHOST B23D10C0-E52E-411E-9D5B-C09FDF709C7D
+
+REM Value for default usage
+DEFINE #AUTOMATIC 00000000-0000-0000-0000-000000000000
+
+REM Values for Windows Terminal
+DEFINE #TERMINAL_DC 2EACA947-7F5F-4CFA-BA87-8F7FBEEFBE69
+DEFINE #TERMINAL_DT E12CFF52-A866-4C77-9A90-F570A7AA2C6B
+
+REM Function for executing Powershell and changing registry values
+FUNCTION CommandPrompt_Downgrade(#VAR1, #VAR2)
+DELAY 2000  
+GUI r
+DELAY 1000
+STRINGLN powershell -NoP -NonI
+DELAY 1000
+STRING Set-ItemProperty -Path "HKCU:\Console\%%Startup" -Name DelegationConsole -Value "{#VAR1}";
+STRINGLN Set-ItemProperty -Path "HKCU:\Console\%%Startup" -Name DelegationTerminal -Value "{#VAR2}";exit
+END_FUNCTION
+
+REM Insert desired values below.
+CommandPrompt_Downgrade(#CONHOST,#CONHOST)
