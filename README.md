@@ -14,7 +14,7 @@ To get a cable like this, you used to need a million dollar budget or to find a 
 ![OMG Cable](https://cdn.shopify.com/s/files/1/0068/2142/files/omg_400x.png?v=1604676891)
 
 ## Documentation
-Documentation on developing payloads for the OMG Cable can be found on the [OMG Wiki](https://github.com/O-MG/O.MG_Cable-Firmware/wiki).
+Documentation on developing payloads for the OMG Cable can be found on the [OMG Wiki](https://github.com/O-MG/O.MG-Firmware/wiki).
 
 ## Disclaimer
 Generally, payloads may execute commands on your device or target. As such, it is possible for a payload to damage your device or target. Payloads from this repository are provided AS-IS without warranty. While Hak5 makes a best effort to review payloads, there are no guarantees as to their effectiveness. As with any script, you are advised to proceed with caution.
