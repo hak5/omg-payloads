@@ -17,6 +17,7 @@ No administrator permissions are required to do this, isn't that absurd, right? 
 - [Payload Description](#payload-description)
 - [Product Key Types](#product-key-types)
 - [Sources](#sources)
+- [Credits](#credits)
 
 ## Note
 
@@ -39,9 +40,7 @@ DEFINE #DISCORD-WEBHOOK example.com
 
 Through this payload, you can export essential information related to the Windows Product Key using a Discord Webhook, ensuring that you identify its type and the key itself.
 
-At the beginning of the payload, the DETECT_READY extension [[1](#sources)] is used to optimize the opening of a PowerShell session on the target.
-
-The following commands are then executed to obtain the necessary information about the Product Key:
+At the beginning of the payload, the commands are executed to obtain the necessary information about the Product Key:
 
 1. This command retrieves the currently in-use Product Key:
 
@@ -87,5 +86,26 @@ Understanding these key types is crucial when working with Windows Product Keys,
 
 ## Sources
 
-- [1] Detect Ready: https://shop.hak5.org/blogs/usb-rubber-ducky/detect-ready
 - [2] Is your Windows Product Key transferrable? https://www.tomshardware.com/how-to/transfer-windows-license-to-new-pc#is-your-windows-product-key-transferrable-3
+
+## Credits
+
+<h2 align="center"> Aleff</h2>
+<div align=center>
+<table>
+  <tr>
+    <td align="center" width="96">
+      <a href="https://github.com/aleff-github">
+        <img src=https://github.com/aleff-github/aleff-github/blob/main/img/github.png?raw=true width="48" height="48" />
+      </a>
+      <br>Github
+    </td>
+    <td align="center" width="96">
+      <a href="https://www.linkedin.com/in/alessandro-greco-aka-aleff/">
+        <img src=https://github.com/aleff-github/aleff-github/blob/main/img/linkedin.png?raw=true width="48" height="48" />
+      </a>
+      <br>Linkedin
+    </td>
+  </tr>
+</table>
+</div>
