@@ -1,6 +1,6 @@
 REM     Title: Network-Panther
 REM     Author: atomiczsec
-REM     Description: This script will display the network configuration details on the console and also save them to a file named NetworkDetails.txt in the same directory, then send to a discord webhook.
+REM     Description: This script will display the network configuration details on the console and also save them to a file in the same directory, then send to a discord webhook.
 
 DEFINE URL http://new-url.com/powershell.ps1
 
