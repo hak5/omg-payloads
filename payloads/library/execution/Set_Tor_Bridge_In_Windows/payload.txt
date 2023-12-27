@@ -1,0 +1,57 @@
+REM ###################################
+REM #                                 |
+REM # Title        : Set Tor Bridge   |
+REM # Author       : Aleff            |
+REM # Version      : 1.0              |
+REM # Category     : Execution        |
+REM # Target       : Windows 10/11    |
+REM #                                 |
+REM ###################################
+
+REM Requirements:
+REM     - Tor installed
+
+REM Note:
+REM     - Payload tested using TorBrowser 13.0.8 based on Mozilla Firefoz 115.6.0esr ENG
+
+REM Set your own bridge(s) here
+DEFINE #BRIDGE example
+DEFINE #BRIDGE-N example-n
+
+DELAY 2000
+GUI
+DELAY 500
+STRING tor browser
+ENTER
+DELAY 1000
+
+ALT
+
+REPEAT 2 LEFTARROW
+
+ENTER
+
+UPARROW
+
+ENTER
+
+DELAY 500
+
+STRING Add a new Bridge
+
+REPEAT 12 ALT TAB
+
+ENTER
+
+TAB
+
+STRINGLN #BRIDGE
+STRINGLN #BRIDGE-N
+
+TAB
+
+ENTER
+
+DELAY 500
+
+ALT F4
