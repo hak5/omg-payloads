@@ -21,11 +21,9 @@ DEFINE #EntryNode example
 DEFINE #MiddleNode example
 DEFINE #ExitNode example
 
-REM_BLOCK
-Activation of administrator permissions may vary from system to system.
-For example, for Debian it is necessary to use 'su' while for other systems such as Ubuntu it is necessary to use 'sudo su'.
-In general this can vary and is information that could be crucial in case the target has tampered with this functionality.
-END_REM
+REM Activation of administrator permissions may vary from system to system.
+REM For example, for Debian it is necessary to use 'su' while for other systems such as Ubuntu it is necessary to use 'sudo su'.
+REM In general this can vary and is information that could be crucial in case the target has tampered with this functionality.
 DEFINE #root_permission_command sudo su
 
 REM Edit this field only if you plan to use this script on Linux operating systems as you need administrator permissions and therefore you need to know the password.
@@ -36,6 +34,7 @@ DEFINE #const_entry_node EntryNodes
 DEFINE #const_middle_node MiddleNodes
 DEFINE #const_exit_node ExitNodes
 
+DELAY 2000
 REM Opens a new terminal and login with administrator permissions.
 CTRL-ALT t
 STRINGLN #root_permission_command
@@ -43,7 +42,7 @@ DELAY 500
 STRING #sudo_pass
 DELAY 1000
 REM Writes the new configuration into the torrc file deleting all the previous settings.
-STRINGLN
+STRINGLN_BLOCK
     echo "#const_entry_node #EntryNode
     #const_middle_node #MiddleNode
     #const_exit_node #ExitNode" > /etc/tor/torrc
