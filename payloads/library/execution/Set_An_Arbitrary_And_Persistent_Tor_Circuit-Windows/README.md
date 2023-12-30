@@ -6,7 +6,7 @@ It is essential to emphasize that the use of this script must comply with local 
 
 **Category**: Execution
 
-![1](assets/1.gif)
+![1](https://i.ibb.co/t8sYGFs/1.gif)
 
 *Dynamic visualization of the script in action. In this case I modified only the MiddleNode so that the persistence of the modification is shown but the full use of the payload results in immodifiability and persistence of all 3 nodes.*
 
