@@ -34,3 +34,4 @@ ELSE
         mv .tmp >> .bashrc
     END_STRINGLN
 END_IF
+ALT F4
