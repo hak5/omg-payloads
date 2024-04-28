@@ -15,7 +15,7 @@ GUI b
 DELAY 1000
 CTRL l
 DELAY 50
-STRING https://x.x.x.x/your-app.apk
+STRING https://play.google.com/store/apps/details?id=com.anydesk.anydeskandroid
 DELAY 50
 ENTER
 DELAY 2000
