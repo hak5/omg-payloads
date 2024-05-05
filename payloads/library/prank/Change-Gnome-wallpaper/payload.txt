@@ -1,0 +1,28 @@
+REM ###############################################
+REM #                                             |
+REM # Title        : Change Gnome wallpaper       |
+REM # Author       : simen64                      |
+REM # Version      : 1.0                          |
+REM # Category     : Prank                        |
+REM # Target       : Linux Gnome                  |
+REM #                                             |
+REM ###############################################
+
+REM Requirements:
+REM - Internet Connection
+
+REM Change this to your keyboard layout
+DUCKY_LANG NO
+
+DELAY 1000
+CAPSLOCK_DISABLE
+
+REM put the link to your image here:
+DEFINE #LINK https://pbs.twimg.com/tweet_video_thumb/GLJE0kIWkAE_ohg.jpg
+
+ALT F2
+DELAY 100
+STRINGLN xterm
+DELAY 500
+
+STRINGLN wget -O /var/tmp/w.png #LINK && gsettings set org.gnome.desktop.background picture-uri-dark 'file:///var/tmp/w.png' && gsettings set org.gnome.desktop.background picture-uri 'file:///var/tmp/w.png' && exit
