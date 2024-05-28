@@ -1,6 +1,6 @@
 **Title: SamDumpCable**
 
-<p>Author: 0iphor13<br>
+<p>Author: 0i41E<br>
 OS: Windows<br>
 Version: 1.0<br>
 Requirements: OMG Firmware v.2.5 or higher</p>
@@ -23,4 +23,4 @@ Afterwards you can use a tool like samdump2 to extract the users hashes.</p>
 	
 	**!Disclaimer! samdump2 has proven to be unreliable in the recent past.**
 
-![alt text](https://github.com/0iphor13/omg-payloads/blob/master/payloads/library/credentials/SamDumpCable/sam.png)
+![alt text](https://github.com/0i41E/omg-payloads/blob/master/payloads/library/credentials/SamDumpCable/sam.png)

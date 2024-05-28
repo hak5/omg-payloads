@@ -2,7 +2,7 @@ REM       OMGHoax
 REM       Version 1.0
 REM       OS: Windows
 REM       Author: rf_bandit
-REM       Thank You: t3l3machus, 0iphor13
+REM       Thank You: t3l3machus, 0i41E
 REM       Requirements: Firmware Version 3.0+
 
 REM Simple way to use the Hoaxshell standalone listener with OMG cables/plug

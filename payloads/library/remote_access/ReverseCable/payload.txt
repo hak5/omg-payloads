@@ -1,7 +1,7 @@
 REM       ReverseCable
 REM       Version 2.0
 REM       OS: Windows / Linux(?) (Not tested with Powershell on Linux)
-REM       Author: 0iphor13
+REM       Author: 0i41E
 REM       Requirements: Firmware Version 3.0 or higher
 
 REM       TCP Reverse shell, based on ReverseDuckyII, executed in the background
