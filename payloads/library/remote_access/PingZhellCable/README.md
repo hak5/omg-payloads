@@ -1,6 +1,6 @@
 **Title: PingZhellCable**
 
-<p>Author: 0iphor13<br>
+<p>Author: 0i41E<br>
 OS: Windows<br>
 Version: 1.1<br>
 Requirements: OMG Firmware v.2.5 or higher</p>
@@ -28,7 +28,7 @@ Disable ICMP replies by the OS:
     `sysctl -w net.ipv4.icmp_echo_ignore_all=1`
 
 Start the client -> `perl PingZhellClient.pl`
-![alt text](https://github.com/0iphor13/omg-payloads/blob/master/payloads/library/remote_access/PingZhellCable/setup.png)
+![alt text](https://github.com/0i41E/omg-payloads/blob/master/payloads/library/remote_access/PingZhellCable/setup.png)
 
 <p>!!!Insert the IP of your attacking machine into the payload variable $IP!!!<br>
 

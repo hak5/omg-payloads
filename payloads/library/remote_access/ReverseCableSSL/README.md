@@ -1,6 +1,6 @@
 **Title: ReverseCableSSL**
 
-<p>Author: 0iphor13<br>
+<p>Author: 0i41E<br>
 OS: Windows<br>
 Version: 2.0<br>
 Requirements: OMG Firmware v.3.0 or higher</p>
@@ -24,5 +24,5 @@ I recommend openssl itself or ncat - Example syntax for both:<br>
 
 - Plug in Cable.
 
-![alt text](https://github.com/0iphor13/omg-payloads/blob/master/payloads/library/remote_access/ReverseCableSSL/CreateCert.png)
-![alt text](https://github.com/0iphor13/omg-payloads/blob/master/payloads/library/remote_access/ReverseCableSSL/StartScreen.jpg)
+![alt text](https://github.com/0i41E/omg-payloads/blob/master/payloads/library/remote_access/ReverseCableSSL/CreateCert.png)
+![alt text](https://github.com/0i41E/omg-payloads/blob/master/payloads/library/remote_access/ReverseCableSSL/StartScreen.jpg)
