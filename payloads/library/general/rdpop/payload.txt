@@ -2,6 +2,7 @@ REM title RDPop
 REM description removes restrictions and enables rdp, if given admin privileges
 REM author C08W38101
 REM target windows 10
+DEFAULT_DELAY 500
 GUI r
 STRING powershell
 ENTER
