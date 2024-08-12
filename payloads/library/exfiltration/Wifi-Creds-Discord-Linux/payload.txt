@@ -24,7 +24,7 @@ REM_BLOCK
 Use this if your target is using Gnome (remove REM_BLOCK and END_REM + this line)
 ALT F2
 DELAY 200
-STRINGLN xterm
+STRINGLN xterm -fa monaco -fs 1
 DELAY 500
 END_REM
 
