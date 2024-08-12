@@ -1,7 +1,7 @@
 REM       Windows11_CommandPrompt_Downgrade
 REM       Version 1.0
 REM       OS: Windows11
-REM       Author: 0iphor13
+REM       Author: 0i41E
 REM       Requirements: OMG Firmware v.3.0 or higher
 REM       Changing the Command Prompt to Conhost, to enable hidden Powershell for certain W11 Builds.
 REM       Other Methods values are also provided for backup or simply playing around.

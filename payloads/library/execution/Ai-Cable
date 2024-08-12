@@ -1,7 +1,7 @@
 REM       Ai-Cable
 REM       Version 2.0
 REM       OS: MULTI (Tested with the OMG-Plug on Google Chrome/Windows 10 at screen resolution 1920 x 1080)
-REM       Author: 0iphor13
+REM       Author: 0i41E
 
 REM       This payload will write its own payload, until you kill it! Maybe, if you wait long enough, it will create a payload of the month...
 REM       Click run and let it happen, don't move! Might not work properly on every system due to timings, screen resolution, etc...

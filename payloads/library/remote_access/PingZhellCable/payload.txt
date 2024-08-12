@@ -1,7 +1,7 @@
 REM       PingZhellCable
 REM       Version 1.1
 REM       OS: Windows
-REM       Author: 0iphor13
+REM       Author: 0i41E
 REM	  Requirements: OMG Firmware v.2.5 or higher
 
 REM       Getting remote access via ICMP
