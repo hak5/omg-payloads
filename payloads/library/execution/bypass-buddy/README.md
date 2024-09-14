@@ -35,7 +35,7 @@ To avoid Windows Script Execution policies:
      ```
 
 4. **Prepare Your DuckyScript&trade; Payload**
-   - Add `bypass-buddy.txt` to the 'boot' slot of your O.MG Plug.
+   - Add `payload.txt` to the 'boot' slot of your O.MG Plug.
 
 5. **Deploy the O.MG Plug**
    - Implant your O.MG Plug into the target host.
@@ -55,8 +55,8 @@ To avoid Windows Script Execution policies:
 
 ## Notes
 
-- **Ensure** to modify both `reverse-shell.ps1` and `bypass-buddy.txt` with your specific configurations, including the IP address and port of your sending/receiving hosts, if you choose to use `reverse-shell.ps1` as your payload.
-- In cases where you'd like to create your own .ps1 payload, modify just `bypass-buddy.txt` with your webserver's host/IP and script name.
+- **Ensure** to modify both `reverse-shell.ps1` and `payload.txt` with your specific configurations, including the IP address and port of your sending/receiving hosts, if you choose to use `reverse-shell.ps1` as your payload.
+- In cases where you'd like to create your own .ps1 payload, modify just `payload.txt` with your webserver's host/IP and script name.
 - This method is a **proof-of-concept** and should be tested responsibly and legally.
 
 ---
