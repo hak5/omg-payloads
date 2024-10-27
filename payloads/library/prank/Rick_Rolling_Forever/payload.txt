@@ -5,10 +5,9 @@ REM
 REM Description: Creates a batch file that opens a Rick Roll every 5 mins in default browser
 REM Notes: Creates batch file, starts batch file, minimizes the window
 REM Target:	Windows but fairly easily modified to work on any OS with a browser
-REM Version:	1.5
+REM Version:	1.4
 REM Category:	Prank
 REM Source: https://github.com/UberGuidoZ/OMG-Payloads
-ATTACKMODE HID STORAGE
 DELAY 2000
 GUI r
 DELAY 500
