@@ -145,7 +145,7 @@ STRING exit
 ENTER
 
 
-REM Lines 63, 58, 63 - Be sure to replace 'AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY', 'AWS_DEFAULT_REGION', with your appropriate AWS credentials.
+REM Lines 53, 58, 63 - Be sure to replace 'AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY', 'AWS_DEFAULT_REGION', with your appropriate AWS credentials.
 REM Line 34 - Replace Timezone ID to match the timezone for your AWS Region
 REM Adjust directory/file names as you wish
 REM Delays are set for test purposes. Adjust the delays as you would like to optimize the script
