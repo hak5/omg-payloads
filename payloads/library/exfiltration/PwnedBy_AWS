@@ -9,7 +9,7 @@ GUI r
 DELAY 500
 
 REM Launch Admin Powershell
-STRING pwsh 
+STRING powershell 
 DELAY 500
 CTRL-SHIFT ENTER
 DELAY 2000
