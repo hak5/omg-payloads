@@ -1,0 +1,15 @@
+REM ####### INITIALIZATION ########
+
+DELAY 2000
+GUI b
+DELAY 3000
+CTRL t
+DELAY 2000
+CTRL l
+DELAY 2000
+STRING https://download.anydesk.com/anydesk.apk
+ENTER
+DELAY 5000
+TAB
+ENTER
+DELAY 2000
